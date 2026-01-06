@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - PlayerShield
+  - Tool_Headphones
+  - Tool_Glasses
   layers:
   - Default
   - TransparentFX

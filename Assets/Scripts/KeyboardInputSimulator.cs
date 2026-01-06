@@ -9,6 +9,10 @@ public class KeyboardInputSimulator : MonoBehaviour
     public Vector3 restOffset = new Vector3(0, -0.5f, 0.5f);
     public float handMoveSpeed = 10f;
 
+    [Header("Interaction Settings")]
+    public Transform holdPosition; // An empty object in front of your camera (where you hold items)
+    private GameObject heldItem = null;
+
     [Header("Movement Settings")]
     public float walkSpeed = 3.0f;
     public float mouseSensitivity = 100.0f; // New variable for mouse speed
@@ -24,6 +28,7 @@ public class KeyboardInputSimulator : MonoBehaviour
 
     void Update()
     {
+        
         // --- 1. MOUSE LOOK (New!) ---
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -60,6 +65,11 @@ public class KeyboardInputSimulator : MonoBehaviour
         {
             MoveHands(restOffset);
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            HandleInteraction();
+        }
     }
 
     void MoveHands(Vector3 targetOffset)
@@ -70,5 +80,53 @@ public class KeyboardInputSimulator : MonoBehaviour
 
         leftHand.localPosition = Vector3.Lerp(leftHand.localPosition, targetLeft, Time.deltaTime * handMoveSpeed);
         rightHand.localPosition = Vector3.Lerp(rightHand.localPosition, targetRight, Time.deltaTime * handMoveSpeed);
+    }
+
+    void HandleInteraction()
+    {
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 3.0f))
+        {
+            // CASE 1: Picking up an item (if hands are empty)
+            if (heldItem == null)
+            {
+                PickupItem item = hit.transform.GetComponent<PickupItem>();
+                if (item != null)
+                {
+                    GrabObject(hit.transform.gameObject);
+                }
+            }
+            // CASE 2: Giving the item to the Child
+            else 
+            {
+                SensoryChild child = hit.transform.GetComponent<SensoryChild>();
+                if (child != null)
+                {
+                    GiveObject(child);
+                }
+            }
+        }
+    }
+
+    void GrabObject(GameObject item)
+    {
+        heldItem = item;
+        item.GetComponent<Rigidbody>().isKinematic = true; // Stop gravity
+        item.transform.parent = holdPosition; // Attach to player
+        item.transform.localPosition = Vector3.zero; // Snap to hand
+        item.transform.localRotation = Quaternion.identity;
+    }
+
+    void GiveObject(SensoryChild child)
+    {
+        // Tell the child what they received
+        string type = heldItem.GetComponent<PickupItem>().itemType;
+        child.ReceiveItem(type);
+
+        // Destroy the item (simulating putting it on)
+        Destroy(heldItem); 
+        heldItem = null; // Hands are empty again
     }
 }
