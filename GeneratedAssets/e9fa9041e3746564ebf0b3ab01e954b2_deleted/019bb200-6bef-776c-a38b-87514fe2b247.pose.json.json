@@ -1,0 +1,11 @@
+{
+    "asset": "e9fa9041e3746564ebf0b3ab01e954b2",
+    "fileName": "019bb200-6bef-776c-a38b-87514fe2b247.pose.json",
+    "prompt": "A character standing with a hunched posture. The character repeatedly raises their right open palm to strike the side of their own head (temple area) in a fast, rhythmic pattern. The left arm is tucked tightly against the chest. The body should show slight recoiling with each impact.",
+    "negativePrompt": "",
+    "model": "9e46c009-67d8-4254-a3a0-32e3168247ee",
+    "modelName": "Text to Motion",
+    "customSeed": 1907693461,
+    "w3CTraceId": "7c7673191f131823581fc64e7f274cc3",
+    "isTrimmed": false
+}
