@@ -732,6 +732,7 @@ MonoBehaviour:
   blockOffset: {x: 0, y: 0.05, z: 0.5}
   restOffset: {x: 0, y: -0.5, z: 0.03}
   handMoveSpeed: 10
+  holdPosition: {fileID: 0}
   walkSpeed: 3
   mouseSensitivity: 100
 --- !u!1 &922750633
@@ -743,10 +744,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 922750638}
+  - component: {fileID: 922750639}
   - component: {fileID: 922750637}
   - component: {fileID: 922750636}
   - component: {fileID: 922750635}
-  - component: {fileID: 922750634}
   m_Layer: 0
   m_Name: NPC_Child
   m_TagString: Untagged
@@ -754,22 +755,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &922750634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922750633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f99182d50d07d748b63e8400062a568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeltdownThrower
-  toyPrefab: {fileID: 909111540000576592, guid: 4e08b4ce91ee25f43bfbc8ae8dc03602, type: 3}
-  playerHead: {fileID: 330585546}
-  throwInterval: 3
-  throwForce: 10
 --- !u!136 &922750635
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -865,6 +850,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &922750639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922750633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cf71b33b2797842831ceedb7364f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SensoryChild
+  childRenderer: {fileID: 922750636}
 --- !u!1 &1033744640
 GameObject:
   m_ObjectHideFlags: 0
