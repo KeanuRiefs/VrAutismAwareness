@@ -3399,7 +3399,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSequencer
   dialogueLines:
-  - Welcome to Aiman's world!
+  - Welcome to Aiman and Amin's world!
+  - I am the father Bear. Let's observe these two together.
+  - Aiman and Amin are twins. Same home, same love.
+  - However, they don't experience the world the same way.
+  - Let's head over there and see how they play.
   - As you can see, Aiman is not a your usual encounter. He is "special".
   typingSpeed: 0.1
 --- !u!1 &1860436256
