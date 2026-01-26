@@ -513,9 +513,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: d4777a3c9a36f0b498e78a93e3a4c2cf, type: 2}
     - target: {fileID: 2927593092117553206, guid: f8e4be020095bd1459eed09ee073a960, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2927593092117553206, guid: f8e4be020095bd1459eed09ee073a960, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: d4777a3c9a36f0b498e78a93e3a4c2cf, type: 2}
+      objectReference: {fileID: 2100000, guid: c25252864c6a76e45a756495d0b9d9ee, type: 2}
     - target: {fileID: 4321514657177891973, guid: f8e4be020095bd1459eed09ee073a960, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -3397,7 +3401,7 @@ MonoBehaviour:
   dialogueLines:
   - Welcome to Aiman's world!
   - As you can see, Aiman is not a your usual encounter. He is "special".
-  typingSpeed: 0.05
+  typingSpeed: 0.1
 --- !u!1 &1860436256
 GameObject:
   m_ObjectHideFlags: 0
