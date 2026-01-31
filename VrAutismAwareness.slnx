@@ -51,8 +51,8 @@
   <Project Path="Unity.AI.Generators.UI.csproj" />
   <Project Path="Unity.Burst.CodeGen.csproj" />
   <Project Path="Unity.VisualScripting.Flow.csproj" />
-  <Project Path="Unity.AI.Pbr.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Unity.AI.Pbr.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
   <Project Path="Unity.TextMeshPro.csproj" />
   <Project Path="Unity.2D.Enhancers.Editor.csproj" />
