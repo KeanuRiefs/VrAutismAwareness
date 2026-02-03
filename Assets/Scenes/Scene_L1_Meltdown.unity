@@ -5110,7 +5110,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1973988224}
   - {fileID: 1391036654}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5229,6 +5228,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 82422192}
+  - {fileID: 1973988224}
   m_Father: {fileID: 1294192520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -6634,12 +6634,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1294192520}
+  m_Father: {fileID: 1391036654}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1800, y: 300}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1973988225
 MonoBehaviour:
@@ -6753,6 +6753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10564e1ca317e1458c8ea940d7ba702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSequencer
+  dialogueContainer: {fileID: 1391036653}
   dialogueLines:
   - Welcome to Aiman and Amin's world!
   - I am the father Bear. Let's observe these two together.

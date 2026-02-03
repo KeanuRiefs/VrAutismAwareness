@@ -3,9 +3,11 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class DialogueSequencer : MonoBehaviour 
 {
     [Header("Dialogue Content")]
+    public GameObject dialogueContainer;
     [TextArea(3, 10)]
     public string[] dialogueLines; // Put all your sentences here!
     
@@ -52,6 +54,10 @@ public class DialogueSequencer : MonoBehaviour
             // Optional: What happens when the dialogue is finished?
             textMesh.text = ""; 
             Debug.Log("End of dialogue.");
+            if (dialogueContainer !=null)
+            {
+                dialogueContainer.SetActive(false);
+            }
         }
     }
 
