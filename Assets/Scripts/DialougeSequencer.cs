@@ -13,6 +13,9 @@ public class DialogueSequencer : MonoBehaviour
     
     [Header("Settings")]
     public float typingSpeed = 0.05f;
+
+    [Header("Animation References")]
+    public BearHandover bearHandoverScript;
     
     private TMP_Text textMesh;
     private int currentIndex = 0;
@@ -57,6 +60,11 @@ public class DialogueSequencer : MonoBehaviour
             if (dialogueContainer !=null)
             {
                 dialogueContainer.SetActive(false);
+            }
+
+            if (bearHandoverScript != null)
+            {
+                bearHandoverScript.StartHandover();
             }
         }
     }
