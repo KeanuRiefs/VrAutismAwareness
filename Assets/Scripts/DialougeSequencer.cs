@@ -1,47 +1,57 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
-
-public class DialogueSequencer : MonoBehaviour 
+public class DialogueSequencer : MonoBehaviour
 {
     [Header("Dialogue Content")]
-    public GameObject dialogueContainer;
+    [SerializeField] private GameObject dialogueContainer;
     [TextArea(3, 10)]
-    public string[] dialogueLines; // Put all your sentences here!
-    
+    [SerializeField] private string[] dialogueLines;
+
     [Header("Settings")]
-    public float typingSpeed = 0.05f;
+    [SerializeField] private float typingSpeed = 0.05f;
+
+    [Header("XR Input")]
+    [Tooltip("Assign Right Controller Trigger Action here")]
+    [SerializeField] private InputActionProperty continueAction;
 
     [Header("Animation References")]
-    public BearHandover bearHandoverScript;
-    
+    [SerializeField] private BearHandover bearHandoverScript;
+
     private TMP_Text textMesh;
     private int currentIndex = 0;
     private bool isTyping = false;
 
-    void Awake() 
+    private void Awake()
     {
         textMesh = GetComponent<TMP_Text>();
-        textMesh.text = ""; 
+        textMesh.text = "";
     }
 
-    void Start() 
+    private void OnEnable()
     {
-        // Start the first line of dialogue
+        continueAction.action.Enable();
+        continueAction.action.performed += OnContinuePressed;
+    }
+
+    private void OnDisable()
+    {
+        continueAction.action.performed -= OnContinuePressed;
+        continueAction.action.Disable();
+    }
+
+    private void Start()
+    {
         DisplayNextLine();
     }
 
-    void Update()
+    private void OnContinuePressed(InputAction.CallbackContext context)
     {
-        // When the player presses Space or Clicks, show the next line
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (!isTyping)
         {
-            if (!isTyping) 
-            {
-                DisplayNextLine();
-            }
+            DisplayNextLine();
         }
     }
 
@@ -49,35 +59,37 @@ public class DialogueSequencer : MonoBehaviour
     {
         if (currentIndex < dialogueLines.Length)
         {
+            StopAllCoroutines();
             StartCoroutine(TypeText(dialogueLines[currentIndex]));
             currentIndex++;
         }
         else
         {
-            // Optional: What happens when the dialogue is finished?
-            textMesh.text = ""; 
-            Debug.Log("End of dialogue.");
-            if (dialogueContainer !=null)
-            {
-                dialogueContainer.SetActive(false);
-            }
-
-            if (bearHandoverScript != null)
-            {
-                bearHandoverScript.StartHandover();
-            }
+            EndDialogue();
         }
     }
 
-    IEnumerator TypeText(string line) 
+    private void EndDialogue()
+    {
+        textMesh.text = "";
+        Debug.Log("End of dialogue.");
+
+        if (dialogueContainer != null)
+            dialogueContainer.SetActive(false);
+
+        if (bearHandoverScript != null)
+            bearHandoverScript.StartHandover();
+    }
+
+    private IEnumerator TypeText(string line)
     {
         isTyping = true;
-        textMesh.text = ""; 
+        textMesh.text = "";
 
-        foreach (char letter in line.ToCharArray()) 
+        foreach (char letter in line)
         {
-            textMesh.text += letter; 
-            yield return new WaitForSeconds(typingSpeed); 
+            textMesh.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
         }
 
         isTyping = false;
