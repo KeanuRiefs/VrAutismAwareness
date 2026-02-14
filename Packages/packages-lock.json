@@ -83,7 +83,7 @@
     },
     "com.unity.ai.toolkit": {
       "version": "1.5.0-pre.2",
-      "depth": 0,
+      "depth": 2,
       "source": "registry",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.2.1"
