@@ -18,8 +18,8 @@
   <Project Path="Unity.VisualScripting.Core.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Editor.csproj" />
   <Project Path="Unity.PerformanceTesting.Editor.csproj" />
-  <Project Path="UnityEngine.TestRunner.csproj" />
   <Project Path="glTFast.Editor.csproj" />
+  <Project Path="UnityEngine.TestRunner.csproj" />
   <Project Path="Unity.XR.OpenXR.csproj" />
   <Project Path="Unity.AppUI.Redux.csproj" />
   <Project Path="Unity.Burst.csproj" />
@@ -37,11 +37,11 @@
   <Project Path="Unity.XR.CoreUtils.csproj" />
   <Project Path="Unity.AI.Mesh.csproj" />
   <Project Path="Unity.Searcher.Editor.csproj" />
+  <Project Path="PPv2URPConverters.csproj" />
   <Project Path="Unity.AI.Sound.csproj" />
   <Project Path="Unity.XR.Hands.csproj" />
   <Project Path="Unity.InferenceEngine.Tokenization.csproj" />
   <Project Path="UnityEditor.TestRunner.csproj" />
-  <Project Path="PPv2URPConverters.csproj" />
   <Project Path="Unity.VisualScripting.Core.csproj" />
   <Project Path="Unity.InferenceEngine.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Runtime.csproj" />
