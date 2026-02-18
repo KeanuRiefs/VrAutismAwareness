@@ -54,8 +54,8 @@
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.AI.Pbr.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
-  <Project Path="Unity.TextMeshPro.csproj" />
   <Project Path="Unity.XR.Hands.Samples.VisualizerSample.csproj" />
+  <Project Path="Unity.TextMeshPro.csproj" />
   <Project Path="Unity.2D.Enhancers.Editor.csproj" />
   <Project Path="glTFast.Export.csproj" />
   <Project Path="Unity.TextMeshPro.Editor.csproj" />
@@ -107,8 +107,8 @@
   <Project Path="Unity.Settings.Editor.csproj" />
   <Project Path="Unity.InputSystem.TestFramework.csproj" />
   <Project Path="UnityEditor.XR.LegacyInputHelpers.csproj" />
-  <Project Path="Unity.ShaderGraph.Utilities.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.Hands.csproj" />
+  <Project Path="Unity.ShaderGraph.Utilities.csproj" />
   <Project Path="Unity.AI.Toolkit.Async.csproj" />
   <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
   <Project Path="Unity.AppUI.Redux.Editor.csproj" />
