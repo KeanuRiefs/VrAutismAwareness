@@ -2,11 +2,13 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem;
+using System.Runtime.Serialization;
 
 public class DialogueSequencer : MonoBehaviour
 {
     [Header("Dialogue Content")]
     [SerializeField] private GameObject dialogueContainer;
+    [SerializeField] private GameObject dialogueBackground;
     [TextArea(3, 10)]
     [SerializeField] private string[] dialogueLines;
 
@@ -79,6 +81,9 @@ public class DialogueSequencer : MonoBehaviour
 
         if (bearHandoverScript != null)
             bearHandoverScript.StartHandover();
+
+        if (dialogueBackground != null)
+            dialogueBackground.SetActive(false);
     }
 
     private IEnumerator TypeText(string line)
