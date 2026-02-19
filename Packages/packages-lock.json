@@ -1,13 +1,5 @@
 {
   "dependencies": {
-    "com.soupday.cc3_unity_tools": {
-      "version": "file:C:/Users/Arief/Downloads/ccic_unity_tools-2_2_3/CCiC-Unity-Tools-2.2.3",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "3.0.0"
-      }
-    },
     "com.unity.2d.common": {
       "version": "12.0.2",
       "depth": 1,
