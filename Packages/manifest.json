@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.soupday.cc3_unity_tools": "file:C:/Users/Arief/Downloads/ccic_unity_tools-2_2_3/CCiC-Unity-Tools-2.2.3",
     "com.unity.2d.enhancers": "1.0.0",
     "com.unity.ai.generators": "1.6.0-pre.3",
     "com.unity.ai.inference": "2.5.0",
