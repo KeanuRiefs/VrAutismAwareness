@@ -2703,6 +2703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373280872}
   - component: {fileID: 373280871}
+  - component: {fileID: 373280873}
   m_Layer: 0
   m_Name: HeadphonePosition
   m_TagString: Untagged
@@ -2773,6 +2774,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &373280873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373280870}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 424.37277, y: 133.82657, z: 125.63082}
+  m_Center: {x: 167.87074, y: -67.41326, z: -26.889103}
 --- !u!1001 &400514977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5500,6 +5522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 801608509}
   - component: {fileID: 801608508}
+  - component: {fileID: 801608510}
   m_Layer: 0
   m_Name: GlassesPosition
   m_TagString: Untagged
@@ -5570,6 +5593,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &801608510
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801608507}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6445922, y: 0.5589665, z: 0.55411834}
+  m_Center: {x: -0.32229587, y: 0.13812675, z: -0.004846302}
 --- !u!1 &805776447
 GameObject:
   m_ObjectHideFlags: 0
@@ -6218,7 +6262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cf71b33b2797842831ceedb7364f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SensoryChild
-  childRenderer: {fileID: 0}
+  headSocket: {fileID: 373280871}
+  eyeSocket: {fileID: 801608508}
 --- !u!1 &854571135
 GameObject:
   m_ObjectHideFlags: 0
@@ -6513,13 +6558,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fe6ec58729f917b49af00b0c5373eee7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 884268053}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fe6ec58729f917b49af00b0c5373eee7, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 884268052}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fe6ec58729f917b49af00b0c5373eee7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 884268051}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fe6ec58729f917b49af00b0c5373eee7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 884268055}
   m_SourcePrefab: {fileID: 100100000, guid: fe6ec58729f917b49af00b0c5373eee7, type: 3}
 --- !u!1 &884268050 stripped
 GameObject:
@@ -6541,7 +6586,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 3
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -6682,8 +6727,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &884268053
-MeshCollider:
+--- !u!65 &884268055
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6700,10 +6745,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 3
+  m_Size: {x: 370.46964, y: 127.503746, z: 146.11995}
+  m_Center: {x: 169.46536, y: -67.53972, z: -0.62349033}
 --- !u!1001 &899333459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13504,14 +13548,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 864dfc5ca2caa57418db388bd2e1cb08, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1896032939}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 864dfc5ca2caa57418db388bd2e1cb08, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1896032938}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 864dfc5ca2caa57418db388bd2e1cb08, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1896032937}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 864dfc5ca2caa57418db388bd2e1cb08, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1896032943}
   m_SourcePrefab: {fileID: 100100000, guid: 864dfc5ca2caa57418db388bd2e1cb08, type: 3}
 --- !u!1 &1896032936 stripped
 GameObject:
@@ -13533,7 +13577,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 5
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -13674,8 +13718,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1896032939
-MeshCollider:
+--- !u!65 &1896032943
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -13692,10 +13736,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8342159127421523248, guid: 864dfc5ca2caa57418db388bd2e1cb08, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.2904463, y: 0.8481964, z: 0.44187203}
+  m_Center: {x: -0.32597107, y: -0.39470464, z: 0.0000001803922}
 --- !u!1 &1909318653
 GameObject:
   m_ObjectHideFlags: 0

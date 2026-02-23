@@ -1,47 +1,67 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit; // Required for XR events
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class SensoryChild : MonoBehaviour
 {
-    public Renderer childRenderer;
-    
-    // Reference your Socket Interactors here
+    [Header("Socket References")]
     public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor headSocket;
     public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor eyeSocket;
 
+    // States for your VR Autism Awareness Project
     private bool hasHeadphones = false;
     private bool hasGlasses = false;
 
-    void Start()
+    void OnEnable()
     {
-        childRenderer.material.color = Color.red;
+        // Subscribe to socket events when the script is enabled
+        if (headSocket != null)
+        {
+            headSocket.selectEntered.AddListener(OnHeadphonesAttached);
+            headSocket.selectExited.AddListener(OnHeadphonesRemoved);
+        }
 
-        // Subscribe to socket events
-        headSocket.selectEntered.AddListener(OnHeadphonesAttached);
-        eyeSocket.selectEntered.AddListener(OnGlassesAttached);
-        
-        // Optional: Subscribe to removal if you want them to get stressed again
-        headSocket.selectExited.AddListener(OnHeadphonesRemoved);
-        eyeSocket.selectExited.AddListener(OnGlassesRemoved);
+        if (eyeSocket != null)
+        {
+            eyeSocket.selectEntered.AddListener(OnGlassesAttached);
+            eyeSocket.selectExited.AddListener(OnGlassesRemoved);
+        }
     }
 
-    // --- Event Handlers ---
+    void OnDisable()
+    {
+        // Clean up listeners to prevent memory leaks or errors
+        if (headSocket != null)
+        {
+            headSocket.selectEntered.RemoveListener(OnHeadphonesAttached);
+            headSocket.selectExited.RemoveListener(OnHeadphonesRemoved);
+        }
+
+        if (eyeSocket != null)
+        {
+            eyeSocket.selectEntered.RemoveListener(OnGlassesAttached);
+            eyeSocket.selectExited.RemoveListener(OnGlassesRemoved);
+        }
+    }
+
+    // --- Interaction Handlers ---
 
     private void OnHeadphonesAttached(SelectEnterEventArgs args)
     {
         hasHeadphones = true;
-        CheckStatus();
-    }
-
-    private void OnGlassesAttached(SelectEnterEventArgs args)
-    {
-        hasGlasses = true;
+        Debug.Log("Audio stress reduced: Headphones equipped.");
         CheckStatus();
     }
 
     private void OnHeadphonesRemoved(SelectExitEventArgs args)
     {
         hasHeadphones = false;
+        CheckStatus();
+    }
+
+    private void OnGlassesAttached(SelectEnterEventArgs args)
+    {
+        hasGlasses = true;
+        Debug.Log("Visual stress reduced: Sunglasses equipped.");
         CheckStatus();
     }
 
@@ -55,16 +75,14 @@ public class SensoryChild : MonoBehaviour
     {
         if (hasHeadphones && hasGlasses)
         {
-            childRenderer.material.color = Color.green;
-            Debug.Log("LEVEL COMPLETE: Child is fully regulated!");
+            // This is where you trigger your "Level Complete" logic
+            Debug.Log("LEVEL SUCCESS: The child is now regulated and comfortable.");
+            LevelComplete();
         }
-        else if (hasHeadphones || hasGlasses)
-        {
-            childRenderer.material.color = Color.yellow;
-        }
-        else
-        {
-            childRenderer.material.color = Color.red;
-        }
+    }
+
+    void LevelComplete()
+    {
+        // Add your final year project transition here (e.g., Load next scene, play audio)
     }
 }
