@@ -99,7 +99,8 @@ public class DialogueSequencer : MonoBehaviour
             dialogueBackground.SetActive(false);
 
         onDialogueEnded?.Invoke();
-        DialogueEnded?.Invoke();
+
+
     }
 
     private IEnumerator TypeText(string line)

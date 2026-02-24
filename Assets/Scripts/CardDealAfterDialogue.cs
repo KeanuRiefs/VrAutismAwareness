@@ -17,23 +17,12 @@ public class CardDealAfterDialogue : MonoBehaviour
 
     [Header("Optional")]
     [SerializeField] private bool detachFromBear = true;
-    [SerializeField] private bool hideCardsOnStart = true;
-    [SerializeField] private bool autoTriggerOnDialogueEnd = true;
-    [SerializeField] private DialogueSequencer dialogueSequencer;
+
 
     private bool hasDealt;
 
-    private void Awake()
-    {
-        if (autoTriggerOnDialogueEnd && dialogueSequencer == null)
-        {
-            dialogueSequencer = FindAnyObjectByType<DialogueSequencer>();
-        }
-    }
-
     private void Start()
     {
-        if (!hideCardsOnStart) return;
 
         for (int i = 0; i < cards.Count; i++)
         {
@@ -44,31 +33,10 @@ public class CardDealAfterDialogue : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        if (autoTriggerOnDialogueEnd && dialogueSequencer != null)
-        {
-            dialogueSequencer.DialogueEnded += DealCardsToPlayer;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (autoTriggerOnDialogueEnd && dialogueSequencer != null)
-        {
-            dialogueSequencer.DialogueEnded -= DealCardsToPlayer;
-        }
-    }
 
     public void DealCardsToPlayer()
     {
         if (hasDealt) return;
-
-        if (cards.Count == 0)
-        {
-            Debug.LogWarning("CardDealAfterDialogue has no cards assigned.");
-            return;
-        }
 
         hasDealt = true;
         StartCoroutine(DealRoutine());
