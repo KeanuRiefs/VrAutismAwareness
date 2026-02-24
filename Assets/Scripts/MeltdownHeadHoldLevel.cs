@@ -8,9 +8,11 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class MeltdownHeadHoldLevel : MonoBehaviour
 {
-    [Header("Interaction")]
+    [Header("Interaction Settings")]
     [SerializeField] private XRBaseInteractable childHeadInteractable;
     [SerializeField, Min(0.1f)] private float requiredHoldSeconds = 5f;
+    [SerializeField] private bool countHoverAsComfort = true;
+    [SerializeField] private bool countGrabAsComfort = true;
 
     [Header("UI (Optional)")]
     [SerializeField] private Slider holdProgressSlider;
@@ -32,33 +34,52 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
     {
         if (childHeadInteractable == null) return;
 
-        childHeadInteractable.hoverEntered.AddListener(OnHoverEntered);
-        childHeadInteractable.hoverExited.AddListener(OnHoverExited);
-        childHeadInteractable.selectEntered.AddListener(OnSelectEntered);
-        childHeadInteractable.selectExited.AddListener(OnSelectExited);
+        if (countHoverAsComfort)
+        {
+            childHeadInteractable.hoverEntered.AddListener(OnHoverEntered);
+            childHeadInteractable.hoverExited.AddListener(OnHoverExited);
+        }
+
+        if (countGrabAsComfort)
+        {
+            childHeadInteractable.selectEntered.AddListener(OnSelectEntered);
+            childHeadInteractable.selectExited.AddListener(OnSelectExited);
+        }
+
+        UpdateUI();
     }
 
     private void OnDisable()
     {
         if (childHeadInteractable == null) return;
 
-        childHeadInteractable.hoverEntered.RemoveListener(OnHoverEntered);
-        childHeadInteractable.hoverExited.RemoveListener(OnHoverExited);
-        childHeadInteractable.selectEntered.RemoveListener(OnSelectEntered);
-        childHeadInteractable.selectExited.RemoveListener(OnSelectExited);
+        if (countHoverAsComfort)
+        {
+            childHeadInteractable.hoverEntered.RemoveListener(OnHoverEntered);
+            childHeadInteractable.hoverExited.RemoveListener(OnHoverExited);
+        }
+
+        if (countGrabAsComfort)
+        {
+            childHeadInteractable.selectEntered.RemoveListener(OnSelectEntered);
+            childHeadInteractable.selectExited.RemoveListener(OnSelectExited);
+        }
     }
 
     private void Update()
     {
-        if (isCompleted || activeInteractors <= 0) return;
+        if (isCompleted) return;
 
-        holdTimer += Time.deltaTime;
-        UpdateUI();
-
-        if (holdTimer >= requiredHoldSeconds)
+        if (activeInteractors > 0)
         {
-            CompleteLevel();
+            holdTimer += Time.deltaTime;
+            if (holdTimer >= requiredHoldSeconds)
+            {
+                CompleteLevel();
+            }
         }
+
+        UpdateUI();
     }
 
     private void OnHoverEntered(HoverEnterEventArgs args)
@@ -101,8 +122,7 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
 
         if (holdProgressText != null)
         {
-            int secondsLeft = Mathf.CeilToInt(requiredHoldSeconds - holdTimer);
-            secondsLeft = Mathf.Max(0, secondsLeft);
+            int secondsLeft = Mathf.Max(0, Mathf.CeilToInt(requiredHoldSeconds - holdTimer));
             holdProgressText.text = isCompleted
                 ? "Level Complete"
                 : $"Comforting child... {secondsLeft}s";
