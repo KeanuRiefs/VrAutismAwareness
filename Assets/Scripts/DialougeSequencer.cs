@@ -6,7 +6,9 @@ using UnityEngine.Events;
 
 public class DialogueSequencer : MonoBehaviour
 {
-    private event System.Action dialogueEnded;
+
+    public event System.Action DialogueEnded;
+
 
     [Header("Dialogue Content")]
     [SerializeField] private GameObject dialogueContainer;
@@ -28,15 +30,6 @@ public class DialogueSequencer : MonoBehaviour
     [SerializeField] private UnityEvent onDialogueEnded;
 
 
-    public void RegisterOnDialogueEnded(System.Action listener)
-    {
-        dialogueEnded += listener;
-    }
-
-    public void UnregisterOnDialogueEnded(System.Action listener)
-    {
-        dialogueEnded -= listener;
-    }
 
     private TMP_Text textMesh;
     private int currentIndex = 0;
@@ -110,7 +103,7 @@ public class DialogueSequencer : MonoBehaviour
             dialogueBackground.SetActive(false);
 
         onDialogueEnded?.Invoke();
-        dialogueEnded?.Invoke();
+
     }
 
     private IEnumerator TypeText(string line)

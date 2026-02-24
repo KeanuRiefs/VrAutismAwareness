@@ -4,15 +4,18 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
+
 
 public class MeltdownHeadHoldLevel : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [SerializeField] private XRBaseInteractable childHeadInteractable;
     [SerializeField, Min(0.1f)] private float requiredHoldSeconds = 5f;
-    [SerializeField] private bool countHoverAsComfort = true;
-    [SerializeField] private bool countGrabAsComfort = true;
+
+
+
+
+
 
     [Header("UI (Optional)")]
     [SerializeField] private Slider holdProgressSlider;
@@ -23,109 +26,122 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
 
     private float holdTimer;
     private bool isCompleted;
-    private int activeInteractors;
 
-    private void Reset()
-    {
-        childHeadInteractable = GetComponentInChildren<XRBaseInteractable>();
-    }
+
+
+
+    private bool isBeingHeld;
+
+
+
 
     private void OnEnable()
     {
         if (childHeadInteractable == null) return;
 
-        if (countHoverAsComfort)
-        {
-            childHeadInteractable.hoverEntered.AddListener(OnHoverEntered);
-            childHeadInteractable.hoverExited.AddListener(OnHoverExited);
-        }
 
-        if (countGrabAsComfort)
-        {
-            childHeadInteractable.selectEntered.AddListener(OnSelectEntered);
-            childHeadInteractable.selectExited.AddListener(OnSelectExited);
-        }
 
-        UpdateUI();
+
+
+        // We use Select (Grab) instead of Hover
+        childHeadInteractable.selectEntered.AddListener(OnGrabStarted);
+        childHeadInteractable.selectExited.AddListener(OnGrabEnded);
+
+
+
     }
 
     private void OnDisable()
     {
         if (childHeadInteractable == null) return;
 
-        if (countHoverAsComfort)
-        {
-            childHeadInteractable.hoverEntered.RemoveListener(OnHoverEntered);
-            childHeadInteractable.hoverExited.RemoveListener(OnHoverExited);
-        }
 
-        if (countGrabAsComfort)
-        {
-            childHeadInteractable.selectEntered.RemoveListener(OnSelectEntered);
-            childHeadInteractable.selectExited.RemoveListener(OnSelectExited);
-        }
+
+
+
+        childHeadInteractable.selectEntered.RemoveListener(OnGrabStarted);
+        childHeadInteractable.selectExited.RemoveListener(OnGrabEnded);
+
+
+
     }
 
     private void Update()
     {
         if (isCompleted) return;
 
-        if (activeInteractors > 0)
-        {
-            holdTimer += Time.deltaTime;
+
+            
+
+
+
             if (holdTimer >= requiredHoldSeconds)
             {
                 CompleteLevel();
             }
         }
 
+
+
+
+        else
+        {
+            // Optional: Reset timer if they let go before 5 seconds
+            holdTimer = Mathf.Max(0, holdTimer - (Time.deltaTime * 2f)); 
+        }
+
+
         UpdateUI();
     }
 
-    private void OnHoverEntered(HoverEnterEventArgs args)
+
+
+    private void OnGrabStarted(SelectEnterEventArgs args)
     {
-        activeInteractors++;
+        isBeingHeld = true;
+        UnityEngine.Debug.Log("Grab started! Timer running.");
     }
 
-    private void OnHoverExited(HoverExitEventArgs args)
+    private void OnGrabEnded(SelectExitEventArgs args)
     {
-        activeInteractors = Mathf.Max(0, activeInteractors - 1);
-    }
+        isBeingHeld = false;
+        UnityEngine.Debug.Log("Grab released! Timer paused/resetting.");
 
-    private void OnSelectEntered(SelectEnterEventArgs args)
-    {
-        activeInteractors++;
-    }
 
-    private void OnSelectExited(SelectExitEventArgs args)
-    {
-        activeInteractors = Mathf.Max(0, activeInteractors - 1);
+
     }
 
     private void CompleteLevel()
     {
         isCompleted = true;
         holdTimer = requiredHoldSeconds;
-        UpdateUI();
+
+
+
+
         onLevelCompleted?.Invoke();
-        Debug.Log("L1 Complete: Child was comforted for 5 seconds.");
+        UnityEngine.Debug.Log("Level Complete: Child comforted successfully!");
+
+
+
     }
 
     private void UpdateUI()
     {
         float progress = Mathf.Clamp01(holdTimer / requiredHoldSeconds);
 
-        if (holdProgressSlider != null)
-        {
-            holdProgressSlider.value = progress;
-        }
+
+
+
+        if (holdProgressSlider != null) holdProgressSlider.value = progress;
 
         if (holdProgressText != null)
         {
-            int secondsLeft = Mathf.Max(0, Mathf.CeilToInt(requiredHoldSeconds - holdTimer));
-            holdProgressText.text = isCompleted
-                ? "Level Complete"
-                : $"Comforting child... {secondsLeft}s";
+            int secondsLeft = Mathf.CeilToInt(requiredHoldSeconds - holdTimer);
+            holdProgressText.text = isCompleted ? "Success!" : $"Hold to comfort... {Mathf.Max(0, secondsLeft)}s";
         }
     }
 }
+
+
+
