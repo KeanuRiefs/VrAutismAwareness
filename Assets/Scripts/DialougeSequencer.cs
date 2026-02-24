@@ -2,10 +2,12 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem;
-using System.Runtime.Serialization;
+using UnityEngine.Events;
 
 public class DialogueSequencer : MonoBehaviour
 {
+    private event System.Action dialogueEnded;
+
     [Header("Dialogue Content")]
     [SerializeField] private GameObject dialogueContainer;
     [SerializeField] private GameObject dialogueBackground;
@@ -22,6 +24,20 @@ public class DialogueSequencer : MonoBehaviour
     [Header("Animation References")]
     [SerializeField] private BearHandover bearHandoverScript;
 
+    [Header("Events")]
+    [SerializeField] private UnityEvent onDialogueEnded;
+
+
+    public void RegisterOnDialogueEnded(System.Action listener)
+    {
+        dialogueEnded += listener;
+    }
+
+    public void UnregisterOnDialogueEnded(System.Action listener)
+    {
+        dialogueEnded -= listener;
+    }
+
     private TMP_Text textMesh;
     private int currentIndex = 0;
     private bool isTyping = false;
@@ -34,12 +50,20 @@ public class DialogueSequencer : MonoBehaviour
 
     private void OnEnable()
     {
+        if (continueAction.action == null)
+        {
+            Debug.LogWarning("DialogueSequencer continueAction is not assigned.");
+            return;
+        }
+
         continueAction.action.Enable();
         continueAction.action.performed += OnContinuePressed;
     }
 
     private void OnDisable()
     {
+        if (continueAction.action == null) return;
+
         continueAction.action.performed -= OnContinuePressed;
         continueAction.action.Disable();
     }
@@ -84,6 +108,9 @@ public class DialogueSequencer : MonoBehaviour
 
         if (dialogueBackground != null)
             dialogueBackground.SetActive(false);
+
+        onDialogueEnded?.Invoke();
+        dialogueEnded?.Invoke();
     }
 
     private IEnumerator TypeText(string line)
