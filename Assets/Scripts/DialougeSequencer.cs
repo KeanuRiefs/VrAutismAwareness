@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem;
-using System.Runtime.Serialization;
+using UnityEngine.Events;
 
 public class DialogueSequencer : MonoBehaviour
 {
@@ -21,6 +21,9 @@ public class DialogueSequencer : MonoBehaviour
 
     [Header("Animation References")]
     [SerializeField] private BearHandover bearHandoverScript;
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent onDialogueEnded;
 
     private TMP_Text textMesh;
     private int currentIndex = 0;
@@ -84,6 +87,8 @@ public class DialogueSequencer : MonoBehaviour
 
         if (dialogueBackground != null)
             dialogueBackground.SetActive(false);
+
+        onDialogueEnded?.Invoke();
     }
 
     private IEnumerator TypeText(string line)
