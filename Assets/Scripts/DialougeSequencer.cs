@@ -6,9 +6,8 @@ using UnityEngine.Events;
 
 public class DialogueSequencer : MonoBehaviour
 {
-
-    public event System.Action DialogueEnded;
-
+    // This Action allows other scripts (like L2CommunicationManager) to listen for the end
+    private System.Action onDialogueEndedAction;
 
     [Header("Dialogue Content")]
     [SerializeField] private GameObject dialogueContainer;
@@ -20,7 +19,6 @@ public class DialogueSequencer : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.05f;
 
     [Header("XR Input")]
-    [Tooltip("Assign Right Controller Trigger Action here")]
     [SerializeField] private InputActionProperty continueAction;
 
     [Header("Animation References")]
@@ -29,11 +27,13 @@ public class DialogueSequencer : MonoBehaviour
     [Header("Events")]
     [SerializeField] private UnityEvent onDialogueEnded;
 
-
-
     private TMP_Text textMesh;
     private int currentIndex = 0;
     private bool isTyping = false;
+
+    // --- NEW REGISTRATION METHODS FOR L2 MANAGER ---
+    public void RegisterOnDialogueEnded(System.Action callback) => onDialogueEndedAction += callback;
+    public void UnregisterOnDialogueEnded(System.Action callback) => onDialogueEndedAction -= callback;
 
     private void Awake()
     {
@@ -43,35 +43,27 @@ public class DialogueSequencer : MonoBehaviour
 
     private void OnEnable()
     {
-        if (continueAction.action == null)
+        if (continueAction.action != null)
         {
-            Debug.LogWarning("DialogueSequencer continueAction is not assigned.");
-            return;
+            continueAction.action.Enable();
+            continueAction.action.performed += OnContinuePressed;
         }
-
-        continueAction.action.Enable();
-        continueAction.action.performed += OnContinuePressed;
     }
 
     private void OnDisable()
     {
-        if (continueAction.action == null) return;
-
-        continueAction.action.performed -= OnContinuePressed;
-        continueAction.action.Disable();
+        if (continueAction.action != null)
+        {
+            continueAction.action.performed -= OnContinuePressed;
+            continueAction.action.Disable();
+        }
     }
 
-    private void Start()
-    {
-        DisplayNextLine();
-    }
+    private void Start() => DisplayNextLine();
 
     private void OnContinuePressed(InputAction.CallbackContext context)
     {
-        if (!isTyping)
-        {
-            DisplayNextLine();
-        }
+        if (!isTyping) DisplayNextLine();
     }
 
     public void DisplayNextLine()
@@ -91,32 +83,26 @@ public class DialogueSequencer : MonoBehaviour
     private void EndDialogue()
     {
         textMesh.text = "";
-        Debug.Log("End of dialogue.");
+        if (dialogueContainer != null) dialogueContainer.SetActive(false);
+        if (dialogueBackground != null) dialogueBackground.SetActive(false);
 
-        if (dialogueContainer != null)
-            dialogueContainer.SetActive(false);
+        // 1. Notify the Bear to start its animation
+        if (bearHandoverScript != null) bearHandoverScript.StartHandover();
 
-        if (bearHandoverScript != null)
-            bearHandoverScript.StartHandover();
-
-        if (dialogueBackground != null)
-            dialogueBackground.SetActive(false);
-
+        // 2. Notify the L2CommunicationManager and other listeners
+        onDialogueEndedAction?.Invoke(); 
         onDialogueEnded?.Invoke();
-
     }
 
     private IEnumerator TypeText(string line)
     {
         isTyping = true;
         textMesh.text = "";
-
         foreach (char letter in line)
         {
             textMesh.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
-
         isTyping = false;
     }
 }

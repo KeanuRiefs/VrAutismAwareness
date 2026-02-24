@@ -7,7 +7,7 @@ public class L2CommunicationManager : MonoBehaviour
 {
     [Header("Dialogue + Cards")]
     [SerializeField] private DialogueSequencer dialogueSequencer;
-    [SerializeField] private GameObject cardStackRoot;
+    [SerializeField] private GameObject cardStackRoot; // This holds your PECS cards
     [SerializeField] private List<L2Card> cards = new List<L2Card>();
     [SerializeField] private XRBaseInteractor rightHandInteractor;
 
@@ -30,75 +30,65 @@ public class L2CommunicationManager : MonoBehaviour
 
     private void Awake()
     {
-        if (dialogueSequencer == null)
-        {
-            dialogueSequencer = FindAnyObjectByType<DialogueSequencer>();
-        }
+        if (dialogueSequencer == null) dialogueSequencer = FindAnyObjectByType<DialogueSequencer>();
     }
 
     private void Start()
     {
+        // Hide cards and toy at the start of the Level
         if (cardStackRoot != null) cardStackRoot.SetActive(false);
         if (trainToy != null) trainToy.SetActive(false);
 
-        for (int i = 0; i < cards.Count; i++)
+        foreach (var card in cards)
         {
-            if (cards[i] != null)
-            {
-                cards[i].Initialize(this);
-            }
+            if (card != null) card.Initialize(this);
         }
     }
 
     private void OnEnable()
     {
-        if (dialogueSequencer != null)
-        {
-            dialogueSequencer.RegisterOnDialogueEnded(HandleDialogueEnded);
-        }
+        if (dialogueSequencer != null) dialogueSequencer.RegisterOnDialogueEnded(HandleDialogueEnded);
     }
 
     private void OnDisable()
     {
-        if (dialogueSequencer != null)
-        {
-            dialogueSequencer.UnregisterOnDialogueEnded(HandleDialogueEnded);
-        }
+        if (dialogueSequencer != null) dialogueSequencer.UnregisterOnDialogueEnded(HandleDialogueEnded);
     }
 
     private void HandleDialogueEnded()
     {
         dialogueFinished = true;
+        
+        // This is where the cards finally appear for the player to grab
         if (cardStackRoot != null) cardStackRoot.SetActive(true);
+        
         onDialogueEnded?.Invoke();
         Debug.Log("L2: Dialogue ended, card stack is now visible.");
     }
 
+    // Called by the individual Card scripts when they hit the child's "trigger" area
     public void TryPresentCard(L2Card card)
     {
         if (!dialogueFinished || correctCardAccepted || card == null) return;
 
+        // Ensure the player is using the Right Hand for this specific interaction
         bool rightHandOnly = rightHandInteractor == null || card.IsCurrentlyHeldBy(rightHandInteractor);
-        if (!rightHandOnly)
-        {
-            Debug.Log("L2: Card ignored. Present using right hand interactor.");
-            return;
-        }
+        if (!rightHandOnly) return;
 
         if (card.IsCorrectCard)
         {
             correctCardAccepted = true;
-            if (childAnimator != null && !string.IsNullOrEmpty(nodTrigger)) childAnimator.SetTrigger(nodTrigger);
+            if (childAnimator != null) childAnimator.SetTrigger(nodTrigger);
             if (trainToy != null) trainToy.SetActive(true);
+            
             onCorrectCard?.Invoke();
             onToyUnlocked?.Invoke();
-            Debug.Log("L2: Correct card accepted. Train toy unlocked.");
-            return;
         }
-
-        if (childAnimator != null && !string.IsNullOrEmpty(rejectTrigger)) childAnimator.SetTrigger(rejectTrigger);
-        onWrongCard?.Invoke();
-        Debug.Log("L2: Wrong card shown.");
+        else
+        {
+            if (childAnimator != null) childAnimator.SetTrigger(rejectTrigger);
+            onWrongCard?.Invoke();
+        }
     }
 
     public void TryGiveToyToChild(L2TrainToy toy)
@@ -106,14 +96,10 @@ public class L2CommunicationManager : MonoBehaviour
         if (toyGiven || !correctCardAccepted || toy == null) return;
 
         bool rightHandOnly = rightHandInteractor == null || toy.IsCurrentlyHeldBy(rightHandInteractor);
-        if (!rightHandOnly)
-        {
-            Debug.Log("L2: Toy ignored. Give using right hand interactor.");
-            return;
-        }
+        if (!rightHandOnly) return;
 
         toyGiven = true;
         onLevelCompleted?.Invoke();
-        Debug.Log("L2 Complete: Correct card + train toy delivered to child.");
+        Debug.Log("L2 Complete: Training Level finished!");
     }
 }
