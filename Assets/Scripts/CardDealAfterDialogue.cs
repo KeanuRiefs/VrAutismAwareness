@@ -19,10 +19,12 @@ public class CardDealAfterDialogue : MonoBehaviour
     [SerializeField] private bool detachFromBear = true;
 
 
+
     private bool hasDealt;
 
     private void Start()
     {
+
 
         for (int i = 0; i < cards.Count; i++)
         {
@@ -34,9 +36,12 @@ public class CardDealAfterDialogue : MonoBehaviour
     }
 
 
+
     public void DealCardsToPlayer()
     {
         if (hasDealt) return;
+
+
 
         hasDealt = true;
         StartCoroutine(DealRoutine());

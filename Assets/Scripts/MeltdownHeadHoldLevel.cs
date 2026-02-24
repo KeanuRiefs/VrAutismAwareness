@@ -6,14 +6,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 
-
-
-
 public class MeltdownHeadHoldLevel : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [SerializeField] private XRBaseInteractable childHeadInteractable;
     [SerializeField, Min(0.1f)] private float requiredHoldSeconds = 5f;
+
+
 
 
 
@@ -30,7 +29,9 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
 
 
 
+
     private bool isBeingHeld;
+
 
 
 
@@ -41,9 +42,11 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
 
 
 
+
         // We use Select (Grab) instead of Hover
         childHeadInteractable.selectEntered.AddListener(OnGrabStarted);
         childHeadInteractable.selectExited.AddListener(OnGrabEnded);
+
 
 
     }
@@ -55,8 +58,10 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
 
 
 
+
         childHeadInteractable.selectEntered.RemoveListener(OnGrabStarted);
         childHeadInteractable.selectExited.RemoveListener(OnGrabEnded);
+
 
 
     }
@@ -66,12 +71,8 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
         if (isCompleted) return;
 
 
-
-
-        if (isBeingHeld)
-        {
-            holdTimer += Time.deltaTime;
             
+
 
 
             if (holdTimer >= requiredHoldSeconds)
@@ -79,6 +80,7 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
                 CompleteLevel();
             }
         }
+
 
 
 
@@ -106,6 +108,7 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
         UnityEngine.Debug.Log("Grab released! Timer paused/resetting.");
 
 
+
     }
 
     private void CompleteLevel()
@@ -115,8 +118,10 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
 
 
 
+
         onLevelCompleted?.Invoke();
         UnityEngine.Debug.Log("Level Complete: Child comforted successfully!");
+
 
 
     }
@@ -124,6 +129,7 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
     private void UpdateUI()
     {
         float progress = Mathf.Clamp01(holdTimer / requiredHoldSeconds);
+
 
 
 
@@ -136,5 +142,6 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
         }
     }
 }
+
 
 
