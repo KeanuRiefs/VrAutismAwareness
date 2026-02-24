@@ -1,19 +1,27 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using TMPro;
 
 public class SensoryChild : MonoBehaviour
 {
     [Header("Socket References")]
-    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor headSocket;
-    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor eyeSocket;
+    public XRSocketInteractor headSocket;
+    public XRSocketInteractor eyeSocket;
 
-    // States for your VR Autism Awareness Project
-    private bool hasHeadphones = false;
-    private bool hasGlasses = false;
+    [Header("UI (Optional)")]
+    [SerializeField] private TMP_Text statusText;
+
+    [Header("Level Events")]
+    [SerializeField] private UnityEvent onLevelCompleted;
+
+    private bool hasHeadphones;
+    private bool hasGlasses;
+    private bool completed;
 
     void OnEnable()
     {
-        // Subscribe to socket events when the script is enabled
         if (headSocket != null)
         {
             headSocket.selectEntered.AddListener(OnHeadphonesAttached);
@@ -25,11 +33,12 @@ public class SensoryChild : MonoBehaviour
             eyeSocket.selectEntered.AddListener(OnGlassesAttached);
             eyeSocket.selectExited.AddListener(OnGlassesRemoved);
         }
+
+        RefreshUI();
     }
 
     void OnDisable()
     {
-        // Clean up listeners to prevent memory leaks or errors
         if (headSocket != null)
         {
             headSocket.selectEntered.RemoveListener(OnHeadphonesAttached);
@@ -43,12 +52,9 @@ public class SensoryChild : MonoBehaviour
         }
     }
 
-    // --- Interaction Handlers ---
-
     private void OnHeadphonesAttached(SelectEnterEventArgs args)
     {
         hasHeadphones = true;
-        Debug.Log("Audio stress reduced: Headphones equipped.");
         CheckStatus();
     }
 
@@ -61,7 +67,6 @@ public class SensoryChild : MonoBehaviour
     private void OnGlassesAttached(SelectEnterEventArgs args)
     {
         hasGlasses = true;
-        Debug.Log("Visual stress reduced: Sunglasses equipped.");
         CheckStatus();
     }
 
@@ -73,16 +78,38 @@ public class SensoryChild : MonoBehaviour
 
     void CheckStatus()
     {
-        if (hasHeadphones && hasGlasses)
+        RefreshUI();
+
+        if (!completed && hasHeadphones && hasGlasses)
         {
-            // This is where you trigger your "Level Complete" logic
-            Debug.Log("LEVEL SUCCESS: The child is now regulated and comfortable.");
-            LevelComplete();
+            completed = true;
+            RefreshUI();
+            onLevelCompleted?.Invoke();
+            Debug.Log("L3 Complete: Headphones and sunglasses applied.");
         }
     }
 
-    void LevelComplete()
+    private void RefreshUI()
     {
-        // Add your final year project transition here (e.g., Load next scene, play audio)
+        if (statusText == null) return;
+
+        if (completed)
+        {
+            statusText.text = "Level Complete";
+            return;
+        }
+
+        if (!hasHeadphones && !hasGlasses)
+        {
+            statusText.text = "Put headphones and sunglasses on the child";
+        }
+        else if (!hasHeadphones)
+        {
+            statusText.text = "Headphones missing";
+        }
+        else if (!hasGlasses)
+        {
+            statusText.text = "Sunglasses missing";
+        }
     }
 }
