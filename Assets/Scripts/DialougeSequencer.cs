@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class DialogueSequencer : MonoBehaviour
 {
+    public event System.Action DialogueEnded;
+
     [Header("Dialogue Content")]
     [SerializeField] private GameObject dialogueContainer;
     [SerializeField] private GameObject dialogueBackground;
@@ -37,12 +39,20 @@ public class DialogueSequencer : MonoBehaviour
 
     private void OnEnable()
     {
+        if (continueAction.action == null)
+        {
+            Debug.LogWarning("DialogueSequencer continueAction is not assigned.");
+            return;
+        }
+
         continueAction.action.Enable();
         continueAction.action.performed += OnContinuePressed;
     }
 
     private void OnDisable()
     {
+        if (continueAction.action == null) return;
+
         continueAction.action.performed -= OnContinuePressed;
         continueAction.action.Disable();
     }
@@ -89,6 +99,8 @@ public class DialogueSequencer : MonoBehaviour
             dialogueBackground.SetActive(false);
 
         onDialogueEnded?.Invoke();
+
+
     }
 
     private IEnumerator TypeText(string line)

@@ -7,11 +7,15 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 
 
+
+
 public class MeltdownHeadHoldLevel : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [SerializeField] private XRBaseInteractable childHeadInteractable;
     [SerializeField, Min(0.1f)] private float requiredHoldSeconds = 5f;
+
+
 
 
     [Header("UI (Optional)")]
@@ -25,7 +29,9 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
     private bool isCompleted;
 
 
+
     private bool isBeingHeld;
+
 
 
     private void OnEnable()
@@ -34,9 +40,11 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
 
 
 
+
         // We use Select (Grab) instead of Hover
         childHeadInteractable.selectEntered.AddListener(OnGrabStarted);
         childHeadInteractable.selectExited.AddListener(OnGrabEnded);
+
 
     }
 
@@ -46,8 +54,10 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
 
 
 
+
         childHeadInteractable.selectEntered.RemoveListener(OnGrabStarted);
         childHeadInteractable.selectExited.RemoveListener(OnGrabEnded);
+
 
     }
 
@@ -57,16 +67,19 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
 
 
 
+
         if (isBeingHeld)
         {
             holdTimer += Time.deltaTime;
             
+
 
             if (holdTimer >= requiredHoldSeconds)
             {
                 CompleteLevel();
             }
         }
+
 
 
         else
@@ -92,6 +105,7 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
         isBeingHeld = false;
         UnityEngine.Debug.Log("Grab released! Timer paused/resetting.");
 
+
     }
 
     private void CompleteLevel()
@@ -100,14 +114,17 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
         holdTimer = requiredHoldSeconds;
 
 
+
         onLevelCompleted?.Invoke();
         UnityEngine.Debug.Log("Level Complete: Child comforted successfully!");
+
 
     }
 
     private void UpdateUI()
     {
         float progress = Mathf.Clamp01(holdTimer / requiredHoldSeconds);
+
 
 
         if (holdProgressSlider != null) holdProgressSlider.value = progress;
@@ -119,4 +136,5 @@ public class MeltdownHeadHoldLevel : MonoBehaviour
         }
     }
 }
+
 
