@@ -152,7 +152,7 @@ public class DialogueSequencer : MonoBehaviour
         if (bearHandoverScript != null) bearHandoverScript.StartHandover();
 
         // 2. Notify the L2CommunicationManager and other listeners
-        onDialogueEndedAction?.Invoke(); 
+        onDialogueEndedAction?.Invoke();
         onDialogueEnded?.Invoke();
     }
 
