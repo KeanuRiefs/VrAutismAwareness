@@ -6,7 +6,10 @@ public class L2ChildInteractionZone : MonoBehaviour
 
     private void Awake()
     {
-        if (manager == null) manager = FindAnyObjectByType<L2CommunicationManager>();
+        if (manager == null)
+        {
+            manager = FindAnyObjectByType<L2CommunicationManager>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -14,7 +17,7 @@ public class L2ChildInteractionZone : MonoBehaviour
         L2Card card = other.GetComponentInParent<L2Card>();
         if (card != null)
         {
-            card.PresentToChild();
+            manager?.TryPresentCard(card);
             return;
         }
 

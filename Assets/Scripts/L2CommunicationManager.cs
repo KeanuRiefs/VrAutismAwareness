@@ -1,133 +1,117 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
-using System.Collections.Generic;
-using System.Collections;
 
 public class L2CommunicationManager : MonoBehaviour
 {
-    [Header("Dialogue + Cards")]
+    [Header("Flow References")]
     [SerializeField] private DialogueSequencer dialogueSequencer;
-    [SerializeField] private GameObject cardStackRoot; // This holds your PECS cards
-    [SerializeField] private List<L2Card> cards = new List<L2Card>();
-    [SerializeField] private XRBaseInteractor rightHandInteractor;
-    [SerializeField] private float cardHideDelaySeconds = 3f;
+    [SerializeField] private GameObject cardsContainer;
+    [SerializeField] private GameObject toyObject;
 
-    [Header("Child + Reward")]
-    [SerializeField] private Animator childAnimator;
-    [SerializeField] private string nodTrigger = "Nod";
-    [SerializeField] private string rejectTrigger = "Reject";
-    [SerializeField] private GameObject trainToy;
+    [Header("Card Step")]
+    [SerializeField] private float hidePresentedCardDelay = 3f;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onDialogueEnded;
-    [SerializeField] private UnityEvent onCorrectCard;
-    [SerializeField] private UnityEvent onWrongCard;
-    [SerializeField] private UnityEvent onToyUnlocked;
+    [SerializeField] private UnityEvent onWrongCardPresented;
+    [SerializeField] private UnityEvent onCorrectCardPresented;
     [SerializeField] private UnityEvent onLevelCompleted;
 
-    private bool dialogueFinished;
-    private bool correctCardAccepted;
-    private bool toyGiven;
-    private Coroutine hideCardsCoroutine;
+    private bool dialogueDone;
+    private bool correctCardDone;
+    private bool levelCompleted;
 
     private void Awake()
     {
-        if (dialogueSequencer == null) dialogueSequencer = FindAnyObjectByType<DialogueSequencer>();
-        if (cardStackRoot == null)
+        if (dialogueSequencer == null)
         {
-            GameObject foundCardRoot = GameObject.Find("PecsCardContainer");
-            if (foundCardRoot != null) cardStackRoot = foundCardRoot;
-        }
-
-        if (cards.Count == 0)
-        {
-            if (cardStackRoot != null) cards.AddRange(cardStackRoot.GetComponentsInChildren<L2Card>(true));
-            else cards.AddRange(FindObjectsByType<L2Card>(FindObjectsInactive.Include, FindObjectsSortMode.None));
-        }
-    }
-
-    private void Start()
-    {
-        // Hide cards and toy at the start of the Level
-        if (cardStackRoot != null) cardStackRoot.SetActive(false);
-        if (trainToy != null) trainToy.SetActive(false);
-
-        foreach (var card in cards)
-        {
-            if (card != null) card.Initialize(this);
+            dialogueSequencer = FindAnyObjectByType<DialogueSequencer>();
         }
     }
 
     private void OnEnable()
     {
-        if (dialogueSequencer != null) dialogueSequencer.RegisterOnDialogueEnded(HandleDialogueEnded);
+        if (dialogueSequencer != null)
+        {
+            dialogueSequencer.RegisterOnDialogueEnded(HandleDialogueEnded);
+        }
     }
 
     private void OnDisable()
     {
-        if (dialogueSequencer != null) dialogueSequencer.UnregisterOnDialogueEnded(HandleDialogueEnded);
+        if (dialogueSequencer != null)
+        {
+            dialogueSequencer.UnregisterOnDialogueEnded(HandleDialogueEnded);
+        }
+    }
+
+    private void Start()
+    {
+        if (toyObject != null)
+        {
+            toyObject.SetActive(false);
+        }
     }
 
     private void HandleDialogueEnded()
     {
-        dialogueFinished = true;
-        
-        // This is where the cards finally appear for the player to grab
-        if (cardStackRoot != null) cardStackRoot.SetActive(true);
-        
+        dialogueDone = true;
+
+        if (cardsContainer != null)
+        {
+            cardsContainer.SetActive(true);
+        }
+
         onDialogueEnded?.Invoke();
-        Debug.Log("L2: Dialogue ended, card stack is now visible.");
+        Debug.Log("L2: Dialogue ended. Waiting for correct card.");
     }
 
-    // Called by the individual Card scripts when they hit the child's "trigger" area
     public void TryPresentCard(L2Card card)
     {
-        if (!dialogueFinished || correctCardAccepted || card == null) return;
-
-        // Ensure the player is using the Right Hand for this specific interaction
-        bool rightHandOnly = rightHandInteractor == null || card.IsCurrentlyHeldBy(rightHandInteractor);
-        if (!rightHandOnly) return;
-
-        if (card.IsCorrectCard)
+        if (!dialogueDone || correctCardDone || card == null)
         {
-            correctCardAccepted = true;
-            if (childAnimator != null) childAnimator.SetTrigger(nodTrigger);
-            if (trainToy != null) trainToy.SetActive(true);
+            return;
+        }
 
-            if (hideCardsCoroutine != null) StopCoroutine(hideCardsCoroutine);
-            hideCardsCoroutine = StartCoroutine(HideCardsAfterDelay());
-            
-            onCorrectCard?.Invoke();
-            onToyUnlocked?.Invoke();
-        }
-        else
+        if (!card.IsCorrectCard)
         {
-            if (childAnimator != null) childAnimator.SetTrigger(rejectTrigger);
-            onWrongCard?.Invoke();
+            onWrongCardPresented?.Invoke();
+            Debug.Log("L2: Wrong card presented.");
+            return;
         }
+
+        correctCardDone = true;
+        onCorrectCardPresented?.Invoke();
+
+        if (toyObject != null)
+        {
+            toyObject.SetActive(true);
+        }
+
+        StartCoroutine(HideCardAfterDelay(card.gameObject));
+        Debug.Log("L2: Correct card presented. Toy can now be handed over.");
     }
 
     public void TryGiveToyToChild(L2TrainToy toy)
     {
-        if (toyGiven || !correctCardAccepted || toy == null) return;
+        if (levelCompleted || !correctCardDone || toy == null)
+        {
+            return;
+        }
 
-        bool rightHandOnly = rightHandInteractor == null || toy.IsCurrentlyHeldBy(rightHandInteractor);
-        if (!rightHandOnly) return;
-
-        toyGiven = true;
+        levelCompleted = true;
         onLevelCompleted?.Invoke();
-        Debug.Log("L2 Complete: Training Level finished!");
+        Debug.Log("L2 Complete: Toy handed over to child.");
     }
 
-    private IEnumerator HideCardsAfterDelay()
+    private IEnumerator HideCardAfterDelay(GameObject cardObject)
     {
-        yield return new WaitForSeconds(cardHideDelaySeconds);
+        yield return new WaitForSeconds(hidePresentedCardDelay);
 
-        if (cardStackRoot != null)
+        if (cardObject != null)
         {
-            cardStackRoot.SetActive(false);
-            Debug.Log($"L2: Card stack hidden after {cardHideDelaySeconds:0.0}s delay.");
+            cardObject.SetActive(false);
         }
     }
 }
