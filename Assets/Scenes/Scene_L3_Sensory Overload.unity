@@ -744,8 +744,8 @@ Transform:
   m_GameObject: {fileID: 161733188}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.457, y: -0.018, z: 0.87236}
-  m_LocalScale: {x: 0.28097963, y: 0.28097963, z: 0.28097963}
+  m_LocalPosition: {x: -5.457, y: -0.022, z: 0.87236}
+  m_LocalScale: {x: 0.3723823, y: 0.3723823, z: 0.3723823}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 372807094}
@@ -6264,6 +6264,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SensoryChild
   headSocket: {fileID: 373280871}
   eyeSocket: {fileID: 801608508}
+  statusText: {fileID: 0}
+  onLevelCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &854571135
 GameObject:
   m_ObjectHideFlags: 0
@@ -11623,15 +11627,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 27601bf6a6e33c044bf6728f043c2f15, type: 3}
       propertyPath: m_LocalScale.x
-      value: 38.490902
+      value: 47.573666
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27601bf6a6e33c044bf6728f043c2f15, type: 3}
       propertyPath: m_LocalScale.y
-      value: 38.490902
+      value: 47.573666
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27601bf6a6e33c044bf6728f043c2f15, type: 3}
       propertyPath: m_LocalScale.z
-      value: 38.490902
+      value: 47.573666
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27601bf6a6e33c044bf6728f043c2f15, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11764,7 +11768,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BearHandover
   bearAnimator: {fileID: 1546931873}
-  pressEPrompt: {fileID: 0}
+  cardInHand: {fileID: 0}
+  cardInteractable: {fileID: 0}
 --- !u!1001 &1736398455
 PrefabInstance:
   m_ObjectHideFlags: 0
