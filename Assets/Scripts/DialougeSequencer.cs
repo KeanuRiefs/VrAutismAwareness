@@ -24,6 +24,11 @@ public class DialogueSequencer : MonoBehaviour
     [Header("Animation References")]
     [SerializeField] private BearHandover bearHandoverScript;
 
+    [Header("L2 PECS Cards (Assign in Inspector)")]
+    [SerializeField] private GameObject pecsCardContainer;
+    [SerializeField] private VRFaceUI pecsCardFollow;
+    [SerializeField] private Transform playerCameraTransform;
+
     [Header("Events")]
     [SerializeField] private UnityEvent onDialogueEnded;
 
@@ -39,6 +44,10 @@ public class DialogueSequencer : MonoBehaviour
     {
         textMesh = GetComponent<TMP_Text>();
         textMesh.text = "";
+
+        // Keep PECS hidden/follow-disabled until dialogue ends.
+        if (pecsCardContainer != null) pecsCardContainer.SetActive(false);
+        if (pecsCardFollow != null) pecsCardFollow.enabled = false;
     }
 
     private void OnEnable()
@@ -86,11 +95,23 @@ public class DialogueSequencer : MonoBehaviour
         if (dialogueContainer != null) dialogueContainer.SetActive(false);
         if (dialogueBackground != null) dialogueBackground.SetActive(false);
 
+        if (pecsCardContainer != null) pecsCardContainer.SetActive(true);
+
+        if (pecsCardFollow != null)
+        {
+            if (playerCameraTransform != null)
+            {
+                pecsCardFollow.cameraTransform = playerCameraTransform;
+            }
+
+            pecsCardFollow.enabled = true;
+        }
+
         // 1. Notify the Bear to start its animation
         if (bearHandoverScript != null) bearHandoverScript.StartHandover();
 
         // 2. Notify the L2CommunicationManager and other listeners
-        onDialogueEndedAction?.Invoke(); 
+        onDialogueEndedAction?.Invoke();
         onDialogueEnded?.Invoke();
     }
 
