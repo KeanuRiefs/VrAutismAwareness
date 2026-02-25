@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using System.Collections.Generic;
+using System.Collections;
 
 public class L2CommunicationManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class L2CommunicationManager : MonoBehaviour
     [SerializeField] private GameObject cardStackRoot; // This holds your PECS cards
     [SerializeField] private List<L2Card> cards = new List<L2Card>();
     [SerializeField] private XRBaseInteractor rightHandInteractor;
+    [SerializeField] private float cardHideDelaySeconds = 3f;
 
     [Header("Child + Reward")]
     [SerializeField] private Animator childAnimator;
@@ -27,10 +29,22 @@ public class L2CommunicationManager : MonoBehaviour
     private bool dialogueFinished;
     private bool correctCardAccepted;
     private bool toyGiven;
+    private Coroutine hideCardsCoroutine;
 
     private void Awake()
     {
         if (dialogueSequencer == null) dialogueSequencer = FindAnyObjectByType<DialogueSequencer>();
+        if (cardStackRoot == null)
+        {
+            GameObject foundCardRoot = GameObject.Find("PecsCardContainer");
+            if (foundCardRoot != null) cardStackRoot = foundCardRoot;
+        }
+
+        if (cards.Count == 0)
+        {
+            if (cardStackRoot != null) cards.AddRange(cardStackRoot.GetComponentsInChildren<L2Card>(true));
+            else cards.AddRange(FindObjectsByType<L2Card>(FindObjectsInactive.Include, FindObjectsSortMode.None));
+        }
     }
 
     private void Start()
@@ -80,6 +94,9 @@ public class L2CommunicationManager : MonoBehaviour
             correctCardAccepted = true;
             if (childAnimator != null) childAnimator.SetTrigger(nodTrigger);
             if (trainToy != null) trainToy.SetActive(true);
+
+            if (hideCardsCoroutine != null) StopCoroutine(hideCardsCoroutine);
+            hideCardsCoroutine = StartCoroutine(HideCardsAfterDelay());
             
             onCorrectCard?.Invoke();
             onToyUnlocked?.Invoke();
@@ -101,5 +118,16 @@ public class L2CommunicationManager : MonoBehaviour
         toyGiven = true;
         onLevelCompleted?.Invoke();
         Debug.Log("L2 Complete: Training Level finished!");
+    }
+
+    private IEnumerator HideCardsAfterDelay()
+    {
+        yield return new WaitForSeconds(cardHideDelaySeconds);
+
+        if (cardStackRoot != null)
+        {
+            cardStackRoot.SetActive(false);
+            Debug.Log($"L2: Card stack hidden after {cardHideDelaySeconds:0.0}s delay.");
+        }
     }
 }

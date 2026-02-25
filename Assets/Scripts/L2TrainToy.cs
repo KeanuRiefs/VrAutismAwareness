@@ -14,6 +14,11 @@ public class L2TrainToy : MonoBehaviour
         grabInteractable = GetComponent<XRGrabInteractable>();
     }
 
+    private void Awake()
+    {
+        if (grabInteractable == null) grabInteractable = GetComponent<XRGrabInteractable>();
+    }
+
     private void OnEnable()
     {
         if (grabInteractable != null)

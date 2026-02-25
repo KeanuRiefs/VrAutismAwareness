@@ -18,6 +18,11 @@ public class L2Card : MonoBehaviour
         grabInteractable = GetComponent<XRGrabInteractable>();
     }
 
+    private void Awake()
+    {
+        if (grabInteractable == null) grabInteractable = GetComponent<XRGrabInteractable>();
+    }
+
     public void Initialize(L2CommunicationManager flowManager)
     {
         manager = flowManager;
@@ -61,6 +66,7 @@ public class L2Card : MonoBehaviour
 
     public void PresentToChild()
     {
+        if (manager == null) manager = FindAnyObjectByType<L2CommunicationManager>();
         manager?.TryPresentCard(this);
     }
 }
