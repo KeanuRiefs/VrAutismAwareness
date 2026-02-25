@@ -10,12 +10,20 @@ public class L2Card : MonoBehaviour
 
     private IXRSelectInteractor currentInteractor;
     private L2CommunicationManager manager;
+    private Rigidbody rb;
 
     public bool IsCorrectCard => isCorrectCard;
 
     private void Reset()
     {
         grabInteractable = GetComponent<XRGrabInteractable>();
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void Awake()
+    {
+        if (grabInteractable == null) grabInteractable = GetComponent<XRGrabInteractable>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void Initialize(L2CommunicationManager flowManager)
@@ -30,6 +38,8 @@ public class L2Card : MonoBehaviour
             grabInteractable.selectEntered.AddListener(OnSelectEntered);
             grabInteractable.selectExited.AddListener(OnSelectExited);
         }
+
+        LockCardToContainer();
     }
 
     private void OnDisable()
@@ -44,6 +54,12 @@ public class L2Card : MonoBehaviour
     private void OnSelectEntered(SelectEnterEventArgs args)
     {
         currentInteractor = args.interactorObject;
+
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = false;
+        }
     }
 
     private void OnSelectExited(SelectExitEventArgs args)
@@ -52,6 +68,16 @@ public class L2Card : MonoBehaviour
         {
             currentInteractor = null;
         }
+    }
+
+    private void LockCardToContainer()
+    {
+        if (rb == null) return;
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = true;
+        rb.useGravity = false;
     }
 
     public bool IsCurrentlyHeldBy(XRBaseInteractor interactor)
