@@ -89,7 +89,8 @@ public class L2CommunicationManager : MonoBehaviour
             toyObject.SetActive(true);
         }
 
-        StartCoroutine(HideCardAfterDelay(card.gameObject));
+        // Modified line: passing the root GameObject to hide the entire card rig
+        StartCoroutine(HideCardAfterDelay(card.transform.root.gameObject));
         Debug.Log("L2: Correct card presented. Toy can now be handed over.");
     }
 

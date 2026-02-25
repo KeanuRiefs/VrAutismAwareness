@@ -149,30 +149,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::L2CommunicationManager
   dialogueSequencer: {fileID: 1723127873}
-  cardStackRoot: {fileID: 1435085455}
-  cards:
-  - {fileID: 8608062921016709329}
-  - {fileID: 8993033280491176950}
-  - {fileID: 4965573785389525631}
-  - {fileID: 8306555413161214846}
-  rightHandInteractor: {fileID: 2127845694}
-  cardHideDelaySeconds: 3
-  childAnimator: {fileID: 0}
-  nodTrigger: Nod
-  rejectTrigger: Reject
-  trainToy: {fileID: 1831716036}
+  cardsContainer: {fileID: 1435085455}
+  toyObject: {fileID: 1831716036}
+  hidePresentedCardDelay: 3
   onDialogueEnded:
     m_PersistentCalls:
       m_Calls: []
-  onCorrectCard:
+  onWrongCardPresented:
     m_PersistentCalls:
       m_Calls: []
-  onWrongCard:
+  onCorrectCardPresented:
     m_PersistentCalls:
-      m_Calls: []
-  onToyUnlocked:
-    m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1831716036}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onLevelCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -10637,7 +10637,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189488e5d9ca40fd8188d5c6b463b055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::L2TrainToy
-  grabInteractable: {fileID: 1831716037}
 --- !u!1 &1869349981 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1670256624, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -11481,17 +11480,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2127845694 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2734315883792958320, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 1593623122}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c416f1a5c494e224fb5564fd1362b50d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &806299972735939840
 GameObject:
   m_ObjectHideFlags: 0
@@ -11905,7 +11893,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::L2Card
   isCorrectCard: 0
-  grabInteractable: {fileID: 4965573785389525629}
 --- !u!114 &4965573785389525632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12126,7 +12113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::L2Card
   isCorrectCard: 1
-  grabInteractable: {fileID: 8306555413161214844}
 --- !u!114 &8306555413161214847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12358,7 +12344,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::L2Card
   isCorrectCard: 0
-  grabInteractable: {fileID: 8608062921016709327}
 --- !u!114 &8608062921016709330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12590,7 +12575,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::L2Card
   isCorrectCard: 0
-  grabInteractable: {fileID: 8993033280491176948}
 --- !u!114 &8993033280491176951
 MonoBehaviour:
   m_ObjectHideFlags: 0
