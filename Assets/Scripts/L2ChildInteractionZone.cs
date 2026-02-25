@@ -4,6 +4,11 @@ public class L2ChildInteractionZone : MonoBehaviour
 {
     [SerializeField] private L2CommunicationManager manager;
 
+    private void Awake()
+    {
+        if (manager == null) manager = FindAnyObjectByType<L2CommunicationManager>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         L2Card card = other.GetComponentInParent<L2Card>();
