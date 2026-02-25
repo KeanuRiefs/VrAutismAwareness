@@ -6011,12 +6011,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3e0a3e96c534eb54d918af059cae63ac, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3026446110909018544, guid: 3e0a3e96c534eb54d918af059cae63ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1845583176}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3e0a3e96c534eb54d918af059cae63ac, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3026446110909018544, guid: 3e0a3e96c534eb54d918af059cae63ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1255925216}
+    - targetCorrespondingSourceObject: {fileID: 3026446110909018544, guid: 3e0a3e96c534eb54d918af059cae63ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1029821098}
+    - targetCorrespondingSourceObject: {fileID: 3026446110909018544, guid: 3e0a3e96c534eb54d918af059cae63ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1603400774}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e0a3e96c534eb54d918af059cae63ac, type: 3}
       insertIndex: -1
@@ -6072,11 +6078,6 @@ MonoBehaviour:
   onLevelCompleted:
     m_PersistentCalls:
       m_Calls: []
---- !u!4 &851975688 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3e0a3e96c534eb54d918af059cae63ac, type: 3}
-  m_PrefabInstance: {fileID: 851975684}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &854571135
 GameObject:
   m_ObjectHideFlags: 0
@@ -6420,7 +6421,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 2
+    m_Bits: 3
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -7584,6 +7585,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 161733189}
   m_LocalEulerAnglesHint: {x: 0, y: 360.516, z: 0}
+--- !u!1 &1029821097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1029821098}
+  m_Layer: 0
+  m_Name: AttachHeadPhone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1029821098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029821097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.67, y: 1.12, z: 0.57}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1305830843}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1033744640
 GameObject:
   m_ObjectHideFlags: 0
@@ -9288,6 +9320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1255925216}
   - component: {fileID: 1255925215}
+  - component: {fileID: 1255925217}
   m_Layer: 0
   m_Name: glassesPos
   m_TagString: Untagged
@@ -9311,7 +9344,7 @@ MonoBehaviour:
   m_InteractionLayers:
     m_Bits: 4
   m_Handedness: 0
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 1603400774}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
   m_StartingSelectedInteractable: {fileID: 0}
@@ -9351,13 +9384,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255925214}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071065, y: 0.00000004470351, z: -0.000000033227604, w: -0.7071072}
-  m_LocalPosition: {x: 0.76707685, y: 19.453913, z: 1.7930411}
-  m_LocalScale: {x: 2.3498774, y: 2.3498766, z: 2.3498766}
+  m_LocalRotation: {x: 0.70710665, y: -0.000023866427, z: 0.000023854935, w: 0.707107}
+  m_LocalPosition: {x: 0.76679283, y: 0.82597464, z: 1.8772261}
+  m_LocalScale: {x: 2.3498778, y: 2.3498769, z: 2.3498769}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 851975688}
+  m_Father: {fileID: 1305830843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1255925217
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255925214}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6148793, y: 1, z: 1}
+  m_Center: {x: -0.30743766, y: 9.338581e-15, z: 7.9457556e-16}
 --- !u!1001 &1282591960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9505,6 +9559,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.020000001, y: 0.0010853107, z: 0.02}
   m_Center: {x: -0.028115157, y: 0.0050122654, z: -0.0053453916}
+--- !u!4 &1305830843 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3026446110909018544, guid: 3e0a3e96c534eb54d918af059cae63ac, type: 3}
+  m_PrefabInstance: {fileID: 851975684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1313820469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11659,6 +11718,37 @@ MonoBehaviour:
   bearAnimator: {fileID: 1546931873}
   cardInHand: {fileID: 0}
   cardInteractable: {fileID: 0}
+--- !u!1 &1603400773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1603400774}
+  m_Layer: 0
+  m_Name: AttachGlasses
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1603400774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603400773}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.793239, y: 0.013471151, z: -0.010336766, w: 0.6086737}
+  m_LocalPosition: {x: 0.886, y: 0.027, z: 2.025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1305830843}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1736398455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12792,6 +12882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845583176}
   - component: {fileID: 1845583175}
+  - component: {fileID: 1845583177}
   m_Layer: 0
   m_Name: headphonePos
   m_TagString: Untagged
@@ -12815,7 +12906,7 @@ MonoBehaviour:
   m_InteractionLayers:
     m_Bits: 2
   m_Handedness: 0
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 1029821098}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
   m_StartingSelectedInteractable: {fileID: 0}
@@ -12855,13 +12946,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845583174}
   serializedVersion: 2
-  m_LocalRotation: {x: -5.1514335e-14, y: -1, z: -0.0000008195637, w: 0.00000016391277}
-  m_LocalPosition: {x: 1.7685415, y: 20.071836, z: 0.3515767}
-  m_LocalScale: {x: 0.010418544, y: 0.010418544, z: 0.010418544}
+  m_LocalRotation: {x: -3.2741806e-11, y: 1, z: 0.0000010728808, w: 0.000033525077}
+  m_LocalPosition: {x: 1.7683549, y: 1.4438993, z: 0.4358285}
+  m_LocalScale: {x: 0.010418546, y: 0.0104185445, z: 0.010418543}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 851975688}
+  m_Father: {fileID: 1305830843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1845583177
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845583174}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 390.87817, y: 290.44495, z: 126.984146}
+  m_Center: {x: 164.78906, y: 18.762999, z: 0.8157196}
 --- !u!1001 &1848723812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13572,7 +13684,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 4
+    m_Bits: 5
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
