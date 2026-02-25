@@ -2,13 +2,18 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using TMPro;
 
 public class SensoryChild : MonoBehaviour
 {
     [Header("Socket References")]
-    public XRSocketInteractor headSocket;
-    public XRSocketInteractor eyeSocket;
+    [SerializeField] private XRSocketInteractor headSocket;
+    [SerializeField] private XRSocketInteractor eyeSocket;
+
+    [Header("Required Items")]
+    [SerializeField] private XRBaseInteractable requiredHeadphone;
+    [SerializeField] private XRBaseInteractable requiredGlasses;
 
     [Header("UI (Optional)")]
     [SerializeField] private TMP_Text statusText;
@@ -20,7 +25,7 @@ public class SensoryChild : MonoBehaviour
     private bool hasGlasses;
     private bool completed;
 
-    void OnEnable()
+    private void OnEnable()
     {
         if (headSocket != null)
         {
@@ -37,7 +42,7 @@ public class SensoryChild : MonoBehaviour
         RefreshUI();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         if (headSocket != null)
         {
@@ -54,29 +59,45 @@ public class SensoryChild : MonoBehaviour
 
     private void OnHeadphonesAttached(SelectEnterEventArgs args)
     {
-        hasHeadphones = true;
+        hasHeadphones = IsRequiredItem(args.interactableObject, requiredHeadphone);
         CheckStatus();
     }
 
     private void OnHeadphonesRemoved(SelectExitEventArgs args)
     {
-        hasHeadphones = false;
-        CheckStatus();
+        if (IsRequiredItem(args.interactableObject, requiredHeadphone))
+        {
+            hasHeadphones = false;
+            CheckStatus();
+        }
     }
 
     private void OnGlassesAttached(SelectEnterEventArgs args)
     {
-        hasGlasses = true;
+        hasGlasses = IsRequiredItem(args.interactableObject, requiredGlasses);
         CheckStatus();
     }
 
     private void OnGlassesRemoved(SelectExitEventArgs args)
     {
-        hasGlasses = false;
-        CheckStatus();
+        if (IsRequiredItem(args.interactableObject, requiredGlasses))
+        {
+            hasGlasses = false;
+            CheckStatus();
+        }
     }
 
-    void CheckStatus()
+    private static bool IsRequiredItem(IXRSelectInteractable selectedItem, XRBaseInteractable requiredItem)
+    {
+        if (requiredItem == null || selectedItem == null)
+        {
+            return false;
+        }
+
+        return selectedItem.transform == requiredItem.transform;
+    }
+
+    private void CheckStatus()
     {
         RefreshUI();
 
@@ -85,13 +106,16 @@ public class SensoryChild : MonoBehaviour
             completed = true;
             RefreshUI();
             onLevelCompleted?.Invoke();
-            Debug.Log("L3 Complete: Headphones and sunglasses applied.");
+            Debug.Log("L3 Complete: Headphone and Glasses 1 attached.");
         }
     }
 
     private void RefreshUI()
     {
-        if (statusText == null) return;
+        if (statusText == null)
+        {
+            return;
+        }
 
         if (completed)
         {
@@ -101,15 +125,15 @@ public class SensoryChild : MonoBehaviour
 
         if (!hasHeadphones && !hasGlasses)
         {
-            statusText.text = "Put headphones and sunglasses on the child";
+            statusText.text = "Snap Headphone and Glasses 1 onto the child";
         }
         else if (!hasHeadphones)
         {
-            statusText.text = "Headphones missing";
+            statusText.text = "Headphone missing";
         }
         else if (!hasGlasses)
         {
-            statusText.text = "Sunglasses missing";
+            statusText.text = "Glasses 1 missing";
         }
     }
 }
