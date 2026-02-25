@@ -24,15 +24,18 @@ public class DialogueSequencer : MonoBehaviour
     [Header("Animation References")]
     [SerializeField] private BearHandover bearHandoverScript;
 
-    [Header("L2 PECS Cards (Assign in Inspector)")]
+    [Header("L2 PECS Cards (Optional)")]
     [SerializeField] private GameObject pecsCardContainer;
-    [SerializeField] private VRFaceUI pecsCardFollow;
     [SerializeField] private Transform playerCameraTransform;
+    [SerializeField] private float pecsDistance = 0.6f;
+    [SerializeField] private float pecsHeightOffset = -0.1f;
+    [SerializeField] private float pecsSmoothSpeed = 8f;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onDialogueEnded;
 
     private TMP_Text textMesh;
+    private VRFaceUI pecsFollow;
     private int currentIndex = 0;
     private bool isTyping = false;
 
@@ -45,9 +48,38 @@ public class DialogueSequencer : MonoBehaviour
         textMesh = GetComponent<TMP_Text>();
         textMesh.text = "";
 
-        // Keep PECS hidden/follow-disabled until dialogue ends.
-        if (pecsCardContainer != null) pecsCardContainer.SetActive(false);
-        if (pecsCardFollow != null) pecsCardFollow.enabled = false;
+        SetupPecsCardContainer();
+    }
+
+    private void SetupPecsCardContainer()
+    {
+        if (pecsCardContainer == null)
+        {
+            GameObject foundContainer = GameObject.Find("PecsCardContainer");
+            if (foundContainer != null) pecsCardContainer = foundContainer;
+        }
+
+        if (playerCameraTransform == null && Camera.main != null)
+        {
+            playerCameraTransform = Camera.main.transform;
+        }
+
+        if (pecsCardContainer == null) return;
+
+        pecsFollow = pecsCardContainer.GetComponent<VRFaceUI>();
+        if (pecsFollow == null)
+        {
+            pecsFollow = pecsCardContainer.AddComponent<VRFaceUI>();
+        }
+
+        pecsFollow.cameraTransform = playerCameraTransform;
+        pecsFollow.distance = pecsDistance;
+        pecsFollow.heightOffset = pecsHeightOffset;
+        pecsFollow.smoothSpeed = pecsSmoothSpeed;
+        pecsFollow.enabled = false;
+
+        // Hide until dialogue has finished.
+        pecsCardContainer.SetActive(false);
     }
 
     private void OnEnable()
@@ -95,16 +127,25 @@ public class DialogueSequencer : MonoBehaviour
         if (dialogueContainer != null) dialogueContainer.SetActive(false);
         if (dialogueBackground != null) dialogueBackground.SetActive(false);
 
-        if (pecsCardContainer != null) pecsCardContainer.SetActive(true);
-
-        if (pecsCardFollow != null)
+        if (pecsCardContainer != null)
         {
-            if (playerCameraTransform != null)
+            if (pecsFollow == null)
             {
-                pecsCardFollow.cameraTransform = playerCameraTransform;
+                SetupPecsCardContainer();
             }
 
-            pecsCardFollow.enabled = true;
+            if (playerCameraTransform == null && Camera.main != null)
+            {
+                playerCameraTransform = Camera.main.transform;
+            }
+
+            pecsCardContainer.SetActive(true);
+
+            if (pecsFollow != null)
+            {
+                pecsFollow.cameraTransform = playerCameraTransform != null ? playerCameraTransform : pecsFollow.cameraTransform;
+                pecsFollow.enabled = true;
+            }
         }
 
         // 1. Notify the Bear to start its animation
