@@ -89,8 +89,8 @@ public class L2CommunicationManager : MonoBehaviour
             toyObject.SetActive(true);
         }
 
-        // Modified line: passing the root GameObject to hide the entire card rig
-        StartCoroutine(HideCardAfterDelay(card.transform.root.gameObject));
+        // FIXED LINE: Now triggering the coroutine that hides the entire container
+        StartCoroutine(HideAllCardsAfterDelay());
         Debug.Log("L2: Correct card presented. Toy can now be handed over.");
     }
 
@@ -106,13 +106,14 @@ public class L2CommunicationManager : MonoBehaviour
         Debug.Log("L2 Complete: Toy handed over to child.");
     }
 
-    private IEnumerator HideCardAfterDelay(GameObject cardObject)
+    // MODIFIED COROUTINE: Targets the cardsContainer instead of a single card
+    private IEnumerator HideAllCardsAfterDelay()
     {
         yield return new WaitForSeconds(hidePresentedCardDelay);
 
-        if (cardObject != null)
+        if (cardsContainer != null)
         {
-            cardObject.SetActive(false);
+            cardsContainer.SetActive(false); // This turns off the parent, hiding all 4 cards
         }
     }
 }

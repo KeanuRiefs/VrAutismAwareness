@@ -38,6 +38,12 @@ public class CardSnapBack : MonoBehaviour
 
     private void OnRelease(SelectExitEventArgs args)
     {
+        // Fixed the spelling of Hierarchy here!
+        if (!gameObject.activeInHierarchy)
+        {
+            return;
+        }
+
         if (returnCoroutine != null) 
         {
             StopCoroutine(returnCoroutine);
