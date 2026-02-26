@@ -22,7 +22,8 @@ public class DialogueSequencer : MonoBehaviour
     [SerializeField] private InputActionProperty continueAction;
 
     [Header("Animation References")]
-    [SerializeField] private BearHandover bearHandoverScript;
+    // Swapped the Bear script for the Child's Animator
+    [SerializeField] private Animator childAnimator; 
 
     [Header("L2 PECS Cards (Optional)")]
     [SerializeField] private GameObject pecsCardContainer;
@@ -148,8 +149,12 @@ public class DialogueSequencer : MonoBehaviour
             }
         }
 
-        // 1. Notify the Bear to start its animation
-        if (bearHandoverScript != null) bearHandoverScript.StartHandover();
+        // --- THE KEY CHANGE IS HERE ---
+        // 1. Notify the Child to start the tantrum animation
+        if (childAnimator != null)
+        {
+            childAnimator.SetTrigger("StartTantrum");
+        }
 
         // 2. Notify the L2CommunicationManager and other listeners
         onDialogueEndedAction?.Invoke();
