@@ -1,55 +1,56 @@
 using UnityEngine;
 using UnityEngine.Video;
+using System.Collections;
 
-public class TutorialVideoSequencer : MonoBehaviour
+public class ManualTutorialSequencer : MonoBehaviour
 {
-    [Header("References")]
     public VideoPlayer videoPlayer;
     
-    [Header("Settings")]
-    public VideoClip[] tutorialClips; // Drop your clips here in order
+    [Header("Sequence Settings")]
+    public VideoClip[] tutorialClips;
+    [Tooltip("Set duration in seconds for each clip above. Must match the number of clips.")]
+    public float[] manualDurations; 
+
     private int currentClipIndex = 0;
 
     void Start()
     {
         if (videoPlayer == null) videoPlayer = GetComponent<VideoPlayer>();
+        
+        // Safety check: Make sure we have durations for our clips
+        if (tutorialClips.Length != manualDurations.Length)
+        {
+            Debug.LogError("Mismatch! You need the same number of Durations as Clips.");
+            return;
+        }
 
-        // Subscribe to the event that triggers when a video ends
-        videoPlayer.loopPointReached += OnVideoFinished;
-
-        // Start the first video
-        PlayCurrentClip();
+        StartCoroutine(PlayTutorialSequence());
     }
 
-    void PlayCurrentClip()
+    IEnumerator PlayTutorialSequence()
     {
-        if (currentClipIndex < tutorialClips.Length)
+        while (currentClipIndex < tutorialClips.Length)
         {
+            // Set and Play the clip
             videoPlayer.clip = tutorialClips[currentClipIndex];
             videoPlayer.Play();
-            Debug.Log($"Playing Tutorial Clip: {currentClipIndex + 1} of {tutorialClips.Length}");
-        }
-        else
-        {
-            HandleTutorialComplete();
-        }
-    }
 
-    void OnVideoFinished(VideoPlayer source)
-    {
-        currentClipIndex++;
-        PlayCurrentClip();
+            Debug.Log($"Playing {videoPlayer.clip.name} for {manualDurations[currentClipIndex]} seconds.");
+
+            // Wait for your specific manual duration
+            yield return new WaitForSeconds(manualDurations[currentClipIndex]);
+
+            // Move to next clip
+            currentClipIndex++;
+        }
+
+        HandleTutorialComplete();
     }
 
     void HandleTutorialComplete()
     {
-        Debug.Log("All tutorial videos finished!");
-        // Logic to unlock Level 1 or show a 'Continue' button goes here
-    }
-
-    private void OnDestroy()
-    {
-        // Clean up the event subscription
-        videoPlayer.loopPointReached -= OnVideoFinished;
+        videoPlayer.Stop();
+        Debug.Log("Manual Tutorial Sequence Finished!");
+        // Add logic here to load Level 1
     }
 }
