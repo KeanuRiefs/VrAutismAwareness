@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class DialogueSequencer : MonoBehaviour
 {
-    // This Action allows other scripts (like L2CommunicationManager) to listen for the end
     private System.Action onDialogueEndedAction;
 
     [Header("Dialogue Content")]
@@ -17,12 +16,13 @@ public class DialogueSequencer : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float typingSpeed = 0.05f;
+    [Tooltip("Prevents accidental double-skipping when physically pushing the button.")]
+    [SerializeField] private float interactionCooldown = 0.5f;
 
-    [Header("XR Input")]
+    [Header("XR Input (Optional)")]
     [SerializeField] private InputActionProperty continueAction;
 
     [Header("Animation References")]
-    // Swapped the Bear script for the Child's Animator
     [SerializeField] private Animator childAnimator; 
 
     [Header("L2 PECS Cards (Optional)")]
@@ -39,8 +39,8 @@ public class DialogueSequencer : MonoBehaviour
     private VRFaceUI pecsFollow;
     private int currentIndex = 0;
     private bool isTyping = false;
+    private float lastInteractionTime; // Tracks cooldown
 
-    // --- NEW REGISTRATION METHODS FOR L2 MANAGER ---
     public void RegisterOnDialogueEnded(System.Action callback) => onDialogueEndedAction += callback;
     public void UnregisterOnDialogueEnded(System.Action callback) => onDialogueEndedAction -= callback;
 
@@ -48,7 +48,6 @@ public class DialogueSequencer : MonoBehaviour
     {
         textMesh = GetComponent<TMP_Text>();
         textMesh.text = "";
-
         SetupPecsCardContainer();
     }
 
@@ -78,8 +77,6 @@ public class DialogueSequencer : MonoBehaviour
         pecsFollow.heightOffset = pecsHeightOffset;
         pecsFollow.smoothSpeed = pecsSmoothSpeed;
         pecsFollow.enabled = false;
-
-        // Hide until dialogue has finished.
         pecsCardContainer.SetActive(false);
     }
 
@@ -103,9 +100,29 @@ public class DialogueSequencer : MonoBehaviour
 
     private void Start() => DisplayNextLine();
 
+    // Triggered by the controller button
     private void OnContinuePressed(InputAction.CallbackContext context)
     {
-        if (!isTyping) DisplayNextLine();
+        TryAdvanceDialogue();
+    }
+
+    // --- NEW METHOD FOR PHYSICAL UI BUTTON ---
+    // Link your UI Button's OnClick() event to this method in the inspector
+    public void OnPhysicalButtonPush()
+    {
+        TryAdvanceDialogue();
+    }
+
+    private void TryAdvanceDialogue()
+    {
+        // Check 1: Is it still typing?
+        if (isTyping) return;
+
+        // Check 2: Has enough time passed since the last push? (Anti-jitter)
+        if (Time.time - lastInteractionTime < interactionCooldown) return;
+
+        lastInteractionTime = Time.time;
+        DisplayNextLine();
     }
 
     public void DisplayNextLine()
@@ -130,15 +147,8 @@ public class DialogueSequencer : MonoBehaviour
 
         if (pecsCardContainer != null)
         {
-            if (pecsFollow == null)
-            {
-                SetupPecsCardContainer();
-            }
-
-            if (playerCameraTransform == null && Camera.main != null)
-            {
-                playerCameraTransform = Camera.main.transform;
-            }
+            if (pecsFollow == null) SetupPecsCardContainer();
+            if (playerCameraTransform == null && Camera.main != null) playerCameraTransform = Camera.main.transform;
 
             pecsCardContainer.SetActive(true);
 
@@ -149,14 +159,11 @@ public class DialogueSequencer : MonoBehaviour
             }
         }
 
-        // --- THE KEY CHANGE IS HERE ---
-        // 1. Notify the Child to start the tantrum animation
         if (childAnimator != null)
         {
             childAnimator.SetTrigger("StartTantrum");
         }
 
-        // 2. Notify the L2CommunicationManager and other listeners
         onDialogueEndedAction?.Invoke();
         onDialogueEnded?.Invoke();
     }
