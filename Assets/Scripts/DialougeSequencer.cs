@@ -14,6 +14,13 @@ public class DialogueSequencer : MonoBehaviour
     [TextArea(3, 10)]
     [SerializeField] private string[] dialogueLines;
 
+    // --- ADDED AUDIO REFERENCES ---
+    [Header("Audio Settings")]
+    [Tooltip("Drag your AudioSource component here (can be on this object or the character).")]
+    [SerializeField] private AudioSource dialogueAudioSource;
+    [Tooltip("Add your voice lines here in the exact same order as your dialogue lines.")]
+    [SerializeField] private AudioClip[] voiceLines;
+
     [Header("Settings")]
     [SerializeField] private float typingSpeed = 0.05f;
 
@@ -45,6 +52,10 @@ public class DialogueSequencer : MonoBehaviour
     {
         textMesh = GetComponent<TMP_Text>();
         if (textMesh != null) textMesh.text = "";
+        
+        // Safety check if you forgot to assign the audio source
+        if (dialogueAudioSource == null) dialogueAudioSource = GetComponent<AudioSource>();
+
         SetupPecsCardContainer();
     }
 
@@ -68,10 +79,9 @@ public class DialogueSequencer : MonoBehaviour
 
     private void Start() => DisplayNextLine();
 
-    // --- THE ONLY METHOD YOU NEED FOR YOUR BUTTON ---
     public void ContinueDialogue()
     {
-        if (isTyping) return; // Don't skip while typing (unless you want to add skip logic)
+        if (isTyping) return; 
         DisplayNextLine();
     }
 
@@ -80,6 +90,10 @@ public class DialogueSequencer : MonoBehaviour
         if (currentIndex < dialogueLines.Length)
         {
             StopAllCoroutines();
+            
+            // --- ADDED: Play matching voice line ---
+            PlayCurrentVoiceLine(currentIndex);
+
             StartCoroutine(TypeText(dialogueLines[currentIndex]));
             currentIndex++;
         }
@@ -89,8 +103,27 @@ public class DialogueSequencer : MonoBehaviour
         }
     }
 
+    // --- ADDED AUDIO LOGIC ---
+    private void PlayCurrentVoiceLine(int index)
+    {
+        if (dialogueAudioSource == null) return;
+
+        // Stop whatever voice line was playing previously
+        dialogueAudioSource.Stop();
+
+        // Check if there is a valid voice clip assigned for this text index
+        if (voiceLines != null && index < voiceLines.Length && voiceLines[index] != null)
+        {
+            dialogueAudioSource.clip = voiceLines[index];
+            dialogueAudioSource.Play();
+        }
+    }
+
     private void EndDialogue()
     {
+        // --- ADDED: Stop voice line if dialogue is forced to end ---
+        if (dialogueAudioSource != null) dialogueAudioSource.Stop();
+
         if (textMesh != null) textMesh.text = "";
         if (dialogueContainer != null) dialogueContainer.SetActive(false);
         if (dialogueBackground != null) dialogueBackground.SetActive(false);
