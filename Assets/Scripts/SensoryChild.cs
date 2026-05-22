@@ -4,6 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using TMPro;
+using UnityEngine.SceneManagement; // Required for Scene transitions
 
 public class SensoryChild : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class SensoryChild : MonoBehaviour
 
     [Header("Level Events")]
     [SerializeField] private UnityEvent onLevelCompleted;
+
+    [Header("Transition Settings")]
+    [SerializeField] private string outroSceneName = "OutroScene"; // Type your exact Outro scene asset name here
+    [SerializeField] private float transitionDelay = 4.0f; // Time in seconds to let your star VFX play before switching scenes
 
     private bool hasHeadphones;
     private bool hasGlasses;
@@ -105,9 +110,26 @@ public class SensoryChild : MonoBehaviour
         {
             completed = true;
             RefreshUI();
+            
+            // 1. Fire your existing UnityEvent (Plays stars particles, etc.)
             onLevelCompleted?.Invoke();
             Debug.Log("L3 Complete: Headphone and Glasses 1 attached.");
+
+            // 2. Start the delayed transition routine to load the Outro scene
+            StartCoroutine(LoadOutroRoutine());
         }
+    }
+
+    // Coroutine to handle the level completion transition delay
+    private System.Collections.IEnumerator LoadOutroRoutine()
+    {
+        // Wait here while your celebration particles fire off
+        yield return new WaitForSeconds(transitionDelay);
+
+        Debug.Log($"Transitioning to Outro scene: {outroSceneName}");
+        
+        // Load the Outro video scene
+        SceneManager.LoadScene(outroSceneName);
     }
 
     private void RefreshUI()
