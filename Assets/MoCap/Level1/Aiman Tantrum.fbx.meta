@@ -1,0 +1,1110 @@
+fileFormatVersion: 2
+guid: fe353892e3e45944a846e78ec89bf6f7
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Aiman_Rig_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: AminRig1_L_Cheek
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Amin_Rig1_R_UpperLip
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Amin_Rig1_Jaw
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandThumb3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandMiddle1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandMiddle2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandMiddle3
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandRing3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_LeftHandPinky3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandThumb3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandMiddle1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandMiddle2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandMiddle3
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandRing3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_RightHandPinky3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Aiman_Rig_Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Aiman Lvl 1(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: CTRL_COG
+      parentName: Aiman Lvl 1(Clone)
+      position: {x: -0.037319113, y: 0.019250706, z: 0.42229557}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_Reference
+      parentName: CTRL_COG
+      position: {x: -5.307931, y: -1.1087745, z: 9.685385}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.98498136, y: 0.98498136, z: 0.98498136}
+    - name: Aiman_Rig_Hips
+      parentName: Aiman_Rig_Reference
+      position: {x: 5.4311166, y: 1.166935, z: -4.2223115}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_Spine
+      parentName: Aiman_Rig_Hips
+      position: {x: 0.0000001219071, y: -0.00000000617561, z: 1.0435888}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_Spine1
+      parentName: Aiman_Rig_Spine
+      position: {x: 0.00000014331053, y: -0.000000007480314, z: 0.9003255}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_Spine2
+      parentName: Aiman_Rig_Spine1
+      position: {x: 0.00000006793404, y: -0.0000000062413656, z: 1.3264433}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftShoulder
+      parentName: Aiman_Rig_Spine2
+      position: {x: -0.45175928, y: -0.0000000041213197, z: 0.91998845}
+      rotation: {x: 0, y: -0, z: -0.000006416546, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftArm
+      parentName: Aiman_Rig_LeftShoulder
+      position: {x: -0.6910129, y: -0.000008745583, z: 0.000010254273}
+      rotation: {x: 0.0000058859673, y: -0.00001778456, z: 0.0000018658227, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftForeArm
+      parentName: Aiman_Rig_LeftArm
+      position: {x: -1.197789, y: 0.000013793418, z: 0.000027834798}
+      rotation: {x: -0.000005945462, y: 0.000018669678, z: 0.0000045507195, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHand
+      parentName: Aiman_Rig_LeftForeArm
+      position: {x: -1.9196764, y: -0.0000035401854, z: -0.000005583508}
+      rotation: {x: 0, y: -0.000000885082, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandPinky1
+      parentName: Aiman_Rig_LeftHand
+      position: {x: -1.041761, y: 0.3290528, z: -0.024114361}
+      rotation: {x: -0.013042327, y: 0.09083505, z: 0.035533603, w: 0.99514633}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandPinky2
+      parentName: Aiman_Rig_LeftHandPinky1
+      position: {x: -0.10667939, y: -0.0000014022315, z: -0.03914738}
+      rotation: {x: 0.00000016018747, y: -0.11611901, z: 0.000009609764, w: 0.9932353}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandPinky3
+      parentName: Aiman_Rig_LeftHandPinky2
+      position: {x: -0.12814936, y: 0.000000021224963, z: -0.005168622}
+      rotation: {x: 0, y: -0.06923348, z: -0, w: 0.9976005}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandPinky4
+      parentName: Aiman_Rig_LeftHandPinky3
+      position: {x: -0.22034134, y: 0.000000031160447, z: 0.027617045}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandRing1
+      parentName: Aiman_Rig_LeftHand
+      position: {x: -1.0396962, y: 0.09327124, z: -0.033413064}
+      rotation: {x: -0.0010193884, y: 0.006450159, z: 0.006747274, w: 0.999956}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandRing2
+      parentName: Aiman_Rig_LeftHandRing1
+      position: {x: -0.25918415, y: 0.00000015424527, z: -0.039166424}
+      rotation: {x: 0, y: -0.0692645, z: -0, w: 0.99759835}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandRing3
+      parentName: Aiman_Rig_LeftHandRing2
+      position: {x: -0.18519937, y: 0.000000046390724, z: -0.00000082073825}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandRing4
+      parentName: Aiman_Rig_LeftHandRing3
+      position: {x: -0.2728216, y: -0.00000007087073, z: 0.000001057101}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandMiddle1
+      parentName: Aiman_Rig_LeftHand
+      position: {x: -1.0427006, y: -0.1403114, z: -0.024012875}
+      rotation: {x: 0, y: 0.000031095955, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandMiddle2
+      parentName: Aiman_Rig_LeftHandMiddle1
+      position: {x: -0.31385645, y: -0.000019422414, z: -0.03916979}
+      rotation: {x: 0, y: -0.069264494, z: -0, w: 0.99759835}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandMiddle3
+      parentName: Aiman_Rig_LeftHandMiddle2
+      position: {x: -0.17845973, y: -0.000011227917, z: 0.00000066126375}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandMiddle4
+      parentName: Aiman_Rig_LeftHandMiddle3
+      position: {x: -0.294965, y: -0.000008112333, z: -0.0000004886712}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandIndex1
+      parentName: Aiman_Rig_LeftHand
+      position: {x: -1.0490915, y: -0.35591173, z: -0.033189047}
+      rotation: {x: -0.000000045589925, y: 0.017452406, z: 0.000002611845, w: 0.9998477}
+      scale: {x: 0.9999994, y: 0.99999946, z: 0.99999946}
+    - name: Aiman_Rig_LeftHandIndex2
+      parentName: Aiman_Rig_LeftHandIndex1
+      position: {x: -0.2429534, y: -0.009498413, z: -0.04765807}
+      rotation: {x: -0.00000013534658, y: -0.08663346, z: -0.0000026087343, w: 0.99624026}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandIndex3
+      parentName: Aiman_Rig_LeftHandIndex2
+      position: {x: -0.14311816, y: -0.005966993, z: -0.000001106446}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandIndex4
+      parentName: Aiman_Rig_LeftHandIndex3
+      position: {x: -0.2609669, y: -0.0044025984, z: -0.0000006562989}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandThumb1
+      parentName: Aiman_Rig_LeftHand
+      position: {x: -0.4826554, y: -0.40823603, z: -0.10764167}
+      rotation: {x: -0.019069431, y: 0.01449401, z: 0.002564913, w: 0.99970984}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandThumb2
+      parentName: Aiman_Rig_LeftHandThumb1
+      position: {x: -0.13971104, y: -0.1747122, z: -0.05143012}
+      rotation: {x: -0.02758939, y: 0.025987532, z: -0.01333161, w: 0.9991926}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandThumb3
+      parentName: Aiman_Rig_LeftHandThumb2
+      position: {x: -0.11923933, y: -0.16833293, z: -0.08135748}
+      rotation: {x: 0.00093339535, y: 0.027695471, z: -0.058676604, w: 0.9978923}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftHandThumb4
+      parentName: Aiman_Rig_LeftHandThumb3
+      position: {x: -0.11037957, y: -0.26372144, z: -0.12624393}
+      rotation: {x: 0, y: 0, z: 0.0000025993363, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_Neck
+      parentName: Aiman_Rig_Spine2
+      position: {x: -0.00000016039053, y: -0.00000016862347, z: 1.0778751}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_Head
+      parentName: Aiman_Rig_Neck
+      position: {x: 0.000000023391772, y: 0.00000032525145, z: 1.4078993}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform16
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Aiman_Rig_Head_End
+      parentName: transform16
+      position: {x: -5.8506413, y: -0.39564994, z: 13.725193}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform17
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_R_UpperLip
+      parentName: transform17
+      position: {x: -5.415235, y: -1.624399, z: 11.180988}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform18
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_R_LeftEyebrow
+      parentName: transform18
+      position: {x: -5.4901233, y: -1.7806013, z: 12.370318}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform19
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_L_RightEyebrow
+      parentName: transform19
+      position: {x: -6.1943173, y: -1.7044439, z: 12.379252}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform20
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_M_UpperLip
+      parentName: transform20
+      position: {x: -5.8410187, y: -1.6855214, z: 11.179847}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform21
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_R_Cheek
+      parentName: transform21
+      position: {x: -4.754836, y: -1.6762573, z: 11.60308}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform22
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_L_LeftEyebrow
+      parentName: transform22
+      position: {x: -7.007235, y: -1.4168195, z: 12.266337}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform23
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_L_LowerLip
+      parentName: transform23
+      position: {x: -6.2629886, y: -1.5169984, z: 11.159227}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform24
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_R_RIghtEyebrow
+      parentName: transform24
+      position: {x: -4.6849294, y: -1.6678736, z: 12.26038}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform25
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: AminRig1_L_Cheek
+      parentName: transform25
+      position: {x: -7.0421166, y: -1.4169174, z: 11.593586}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform26
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_Nose
+      parentName: transform26
+      position: {x: -5.8435483, y: -1.8145976, z: 11.47944}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform27
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_Jaw
+      parentName: transform27
+      position: {x: -5.83698, y: -1.5740594, z: 10.674875}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform28
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_R_LowerLip
+      parentName: transform28
+      position: {x: -5.4224386, y: -1.6082748, z: 11.162979}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform29
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_M_LowerLip
+      parentName: transform29
+      position: {x: -5.8427405, y: -1.6587476, z: 11.105863}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform30
+      parentName: Aiman_Rig_Head
+      position: {x: 5.93331, y: 0.40870053, z: -11.159718}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0152476, y: 1.0152476, z: 1.0152476}
+    - name: Amin_Rig1_L_UpperLip
+      parentName: transform30
+      position: {x: -6.258513, y: -1.534877, z: 11.182946}
+      rotation: {x: 0.046065222, y: 0.0070578186, z: -0.054559443, w: 0.99742246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightShoulder
+      parentName: Aiman_Rig_Spine2
+      position: {x: 0.45175892, y: 0.00000002991055, z: 0.9199881}
+      rotation: {x: 0, y: 0, z: 0.000020231517, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightArm
+      parentName: Aiman_Rig_RightShoulder
+      position: {x: 0.6910156, y: -0.000027929967, z: 0.000028311038}
+      rotation: {x: 0.000005982825, y: 0.000017851613, z: -0.000029495766, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightForeArm
+      parentName: Aiman_Rig_RightArm
+      position: {x: 1.3298941, y: 0.00006525429, z: 0.000050284692}
+      rotation: {x: -0.0000060420593, y: -0.000018736817, z: 0.000009264253, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHand
+      parentName: Aiman_Rig_RightForeArm
+      position: {x: 1.9410505, y: -0.0000016975745, z: -0.0000045484785}
+      rotation: {x: 0, y: 0.000000885082, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandPinky1
+      parentName: Aiman_Rig_RightHand
+      position: {x: 1.0188215, y: 0.31605855, z: 0.011068405}
+      rotation: {x: -0.02121392, y: -0.1378239, z: -0.046926867, w: 0.989117}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandPinky2
+      parentName: Aiman_Rig_RightHandPinky1
+      position: {x: 0.12757458, y: 0.0012456847, z: -0.059105773}
+      rotation: {x: 0.0073353723, y: 0.18173273, z: 0.020834772, w: 0.9830999}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandPinky3
+      parentName: Aiman_Rig_RightHandPinky2
+      position: {x: 0.10878362, y: -0.004911514, z: -0.0000019143288}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandPinky4
+      parentName: Aiman_Rig_RightHandPinky3
+      position: {x: 0.25552377, y: 0.003755519, z: -0.0000016365079}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandRing1
+      parentName: Aiman_Rig_RightHand
+      position: {x: 1.0364023, y: 0.09045281, z: -0.006817576}
+      rotation: {x: -0.006008296, y: -0.026775185, z: -0.020705057, w: 0.99940896}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandRing2
+      parentName: Aiman_Rig_RightHandRing1
+      position: {x: 0.2535515, y: -0.0066365544, z: -0.05470164}
+      rotation: {x: -0.0010078114, y: 0.066001035, z: -0.02655379, w: 0.99746567}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandRing3
+      parentName: Aiman_Rig_RightHandRing2
+      position: {x: 0.18795125, y: 0.0051865852, z: 0.00000069625315}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandRing4
+      parentName: Aiman_Rig_RightHandRing3
+      position: {x: 0.28692934, y: 0.0043288036, z: -0.00000011728178}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandMiddle1
+      parentName: Aiman_Rig_RightHand
+      position: {x: 1.0272326, y: -0.14228721, z: -0.0121912705}
+      rotation: {x: -0.004530936, y: -0.01652202, z: -0.030977989, w: 0.99937326}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandMiddle2
+      parentName: Aiman_Rig_RightHandMiddle1
+      position: {x: 0.31569427, y: 0.010945433, z: -0.0525315}
+      rotation: {x: 0.00018152218, y: 0.04481654, z: 0.0035557644, w: 0.99898887}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandMiddle3
+      parentName: Aiman_Rig_RightHandMiddle2
+      position: {x: 0.20081727, y: -0.0012651641, z: 0.0000012284905}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandMiddle4
+      parentName: Aiman_Rig_RightHandMiddle3
+      position: {x: 0.2866196, y: 0.0045138756, z: -0.000001384146}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandIndex1
+      parentName: Aiman_Rig_RightHand
+      position: {x: 1.0336179, y: -0.3532796, z: 0.004618826}
+      rotation: {x: -0.0056968923, y: -0.024356296, z: -0.016545499, w: 0.9995503}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandIndex2
+      parentName: Aiman_Rig_RightHandIndex1
+      position: {x: 0.2539931, y: -0.011083977, z: -0.054686416}
+      rotation: {x: 0.0015206572, y: 0.06577623, z: 0.0014909876, w: 0.9978321}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandIndex3
+      parentName: Aiman_Rig_RightHandIndex2
+      position: {x: 0.14121808, y: -0.007132094, z: 0.00000088287385}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandIndex4
+      parentName: Aiman_Rig_RightHandIndex3
+      position: {x: 0.2648404, y: 0.0044071972, z: 0.0000004371637}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandThumb1
+      parentName: Aiman_Rig_RightHand
+      position: {x: 0.48077956, y: -0.41768095, z: -0.051532254}
+      rotation: {x: -0.11352456, y: -0.085918, z: 0.0022998438, w: 0.98981065}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandThumb2
+      parentName: Aiman_Rig_RightHandThumb1
+      position: {x: 0.12388724, y: -0.16634855, z: -0.099122696}
+      rotation: {x: 0, y: 0, z: 0.000005254192, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandThumb3
+      parentName: Aiman_Rig_RightHandThumb2
+      position: {x: 0.113987945, y: -0.17056133, z: -0.0953824}
+      rotation: {x: 0.011692036, y: -0.013210513, z: 0.037588187, w: 0.99913764}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightHandThumb4
+      parentName: Aiman_Rig_RightHandThumb3
+      position: {x: 0.11313155, y: -0.25913844, z: -0.12624188}
+      rotation: {x: 0, y: 0, z: 0.0000018377618, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightUpLeg
+      parentName: Aiman_Rig_Hips
+      position: {x: 0.6710142, y: -0.00000006948934, z: -0.40464517}
+      rotation: {x: 0.13938953, y: 0.000009298324, z: -0.00000035762795, w: 0.99023765}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightLeg
+      parentName: Aiman_Rig_RightUpLeg
+      position: {x: 0.000000068092056, y: -0.17352247, z: -1.8902192}
+      rotation: {x: -0.023944983, y: 0, z: -0, w: 0.9997133}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightFoot
+      parentName: Aiman_Rig_RightLeg
+      position: {x: -0.00000083234886, y: 0.15696944, z: -2.4907331}
+      rotation: {x: -0.11563836, y: 0.00003230602, z: -0.0000047093613, w: 0.9932914}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_RightToeBase
+      parentName: Aiman_Rig_RightFoot
+      position: {x: 0.0001211262, y: -1.493305, z: -0.6035911}
+      rotation: {x: 0.00002541717, y: -0.000041891268, z: 0.0000000010647575, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftUpLeg
+      parentName: Aiman_Rig_Hips
+      position: {x: -0.67974126, y: -0.000000015422442, z: -0.40464485}
+      rotation: {x: 0.13925329, y: 0.000009343028, z: -0.00000020861641, w: 0.9902568}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftLeg
+      parentName: Aiman_Rig_LeftUpLeg
+      position: {x: -0.0000021361197, y: -0.17349258, z: -1.9020557}
+      rotation: {x: -0.023781566, y: 0, z: -0, w: 0.9997172}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftFoot
+      parentName: Aiman_Rig_LeftLeg
+      position: {x: -0.0000010385362, y: 0.15696749, z: -2.490734}
+      rotation: {x: -0.11566405, y: -0.000009345345, z: -0.0000000136342155, w: 0.9932884}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Aiman_Rig_LeftToeBase
+      parentName: Aiman_Rig_LeftFoot
+      position: {x: -0.00000088928044, y: -1.493302, z: -0.6035902}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:Aiman
+      parentName: Aiman Lvl 1(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:Shirt
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:R_eye
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:L_eye
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:Pants
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:R_eyebrow
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:L_eyebrow
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:Hair_head
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:L_foot
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:Head14
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:R_hand3
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:L_hand1
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:Lower_teeth1
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:Upper_Teeth1
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:Tongue
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:Hair
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model:R_foot
+      parentName: model:Aiman
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: e89fb7ce2ce0d0d44b80e48aa18d9936, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
