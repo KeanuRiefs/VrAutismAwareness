@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class L2CommunicationManager : MonoBehaviour
 {
     [Header("Flow References")]
-    [SerializeField] private DialogueSequencer dialogueSequencer;
+    [SerializeField] private L2DialogueSequencer dialogueSequencer;
     [SerializeField] private GameObject cardsContainer;
     [SerializeField] private GameObject toyObject;
     
@@ -30,7 +30,7 @@ public class L2CommunicationManager : MonoBehaviour
     {
         if (dialogueSequencer == null)
         {
-            dialogueSequencer = FindAnyObjectByType<DialogueSequencer>();
+            dialogueSequencer = FindAnyObjectByType<L2DialogueSequencer>();
         }
     }
 
