@@ -8,6 +8,10 @@ public class L2CommunicationManager : MonoBehaviour
     [SerializeField] private DialogueSequencer dialogueSequencer;
     [SerializeField] private GameObject cardsContainer;
     [SerializeField] private GameObject toyObject;
+    
+    // --- ADDED ANIMATOR REFERENCE ---
+    [Header("Animation")]
+    [SerializeField] private Animator childAnimator;
 
     [Header("Card Step")]
     [SerializeField] private float hidePresentedCardDelay = 3f;
@@ -76,12 +80,19 @@ public class L2CommunicationManager : MonoBehaviour
 
         if (!card.IsCorrectCard)
         {
+            // --- ADDED: Trigger Head Shake ---
+            if (childAnimator != null) childAnimator.SetTrigger("ShakeHead");
+            
             onWrongCardPresented?.Invoke();
             Debug.Log("L2: Wrong card presented.");
             return;
         }
 
         correctCardDone = true;
+        
+        // --- ADDED: Trigger Nodding ---
+        if (childAnimator != null) childAnimator.SetTrigger("NodHead");
+        
         onCorrectCardPresented?.Invoke();
 
         if (toyObject != null)
@@ -89,7 +100,6 @@ public class L2CommunicationManager : MonoBehaviour
             toyObject.SetActive(true);
         }
 
-        // FIXED LINE: Now triggering the coroutine that hides the entire container
         StartCoroutine(HideAllCardsAfterDelay());
         Debug.Log("L2: Correct card presented. Toy can now be handed over.");
     }
@@ -102,18 +112,21 @@ public class L2CommunicationManager : MonoBehaviour
         }
 
         levelCompleted = true;
+        
+        // --- ADDED: Trigger Accepting the Toy ---
+        if (childAnimator != null) childAnimator.SetTrigger("AcceptToy");
+        
         onLevelCompleted?.Invoke();
         Debug.Log("L2 Complete: Toy handed over to child.");
     }
 
-    // MODIFIED COROUTINE: Targets the cardsContainer instead of a single card
     private IEnumerator HideAllCardsAfterDelay()
     {
         yield return new WaitForSeconds(hidePresentedCardDelay);
 
         if (cardsContainer != null)
         {
-            cardsContainer.SetActive(false); // This turns off the parent, hiding all 4 cards
+            cardsContainer.SetActive(false); 
         }
     }
 }
