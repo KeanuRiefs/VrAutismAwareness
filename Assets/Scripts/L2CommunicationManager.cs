@@ -57,7 +57,7 @@ public class L2CommunicationManager : MonoBehaviour
 
     private void Start()
     {
-        if (toyObject != null) toyObject.SetActive(false);
+        if (toyObject != null) toyObject.SetActive(true);
     }
 
     private void HandleDialogueEnded()

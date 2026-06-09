@@ -75,6 +75,7 @@ public class DialogueSequencer : MonoBehaviour
             continueAction.action.performed -= _ => ContinueDialogue();
             continueAction.action.Disable();
         }
+        
     }
 
     private void Start() => DisplayNextLine();

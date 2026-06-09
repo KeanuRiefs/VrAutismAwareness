@@ -28,16 +28,11 @@ public class L2DialogueSequencer : MonoBehaviour
 
     [Header("L2 PECS Cards")]
     [SerializeField] private GameObject pecsCardContainer;
-    [SerializeField] private Transform playerCameraTransform;
-    [SerializeField] private float pecsDistance = 0.6f;
-    [SerializeField] private float pecsHeightOffset = -0.1f;
-    [SerializeField] private float pecsSmoothSpeed = 8f;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onDialogueEnded;
 
     private TMP_Text textMesh;
-    private VRFaceUI pecsFollow;
     private int currentIndex = 0;
     private bool isTyping = false;
 
@@ -120,12 +115,8 @@ public class L2DialogueSequencer : MonoBehaviour
 
         if (pecsCardContainer != null)
         {
-            if (pecsFollow == null) SetupPecsCardContainer();
             pecsCardContainer.SetActive(true);
-            if (pecsFollow != null) pecsFollow.enabled = true;
         }
-
-        // The Tantrum trigger and Animator reference have been completely removed from this section.
 
         onDialogueEndedAction?.Invoke();
         onDialogueEnded?.Invoke();
@@ -145,20 +136,13 @@ public class L2DialogueSequencer : MonoBehaviour
 
     private void SetupPecsCardContainer()
     {
+        // Still finds the container if it wasn't manually assigned in the inspector
         if (pecsCardContainer == null)
             pecsCardContainer = GameObject.Find("PecsCardContainer");
 
-        if (playerCameraTransform == null && Camera.main != null)
-            playerCameraTransform = Camera.main.transform;
-
-        if (pecsCardContainer == null) return;
-
-        pecsFollow = pecsCardContainer.GetComponent<VRFaceUI>() ?? pecsCardContainer.AddComponent<VRFaceUI>();
-        pecsFollow.cameraTransform = playerCameraTransform;
-        pecsFollow.distance = pecsDistance;
-        pecsFollow.heightOffset = pecsHeightOffset;
-        pecsFollow.smoothSpeed = pecsSmoothSpeed;
-        pecsFollow.enabled = false;
-        pecsCardContainer.SetActive(false);
+        if (pecsCardContainer != null)
+        {
+            pecsCardContainer.SetActive(false);
+        }
     }
 }
