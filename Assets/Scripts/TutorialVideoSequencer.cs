@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Video;
-using System.Collections;
+using UnityEngine.SceneManagement; // Essential for loading scenes
 
 public class ManualTutorialSequencer : MonoBehaviour
 {
@@ -8,8 +8,15 @@ public class ManualTutorialSequencer : MonoBehaviour
     
     [Header("Sequence Settings")]
     public VideoClip[] tutorialClips;
-    [Tooltip("Set duration in seconds for each clip above. Must match the number of clips.")]
-    public float[] manualDurations; 
+
+    [Header("UI References")]
+    [Tooltip("Drag your Continue button here.")]
+    public GameObject continueButton;
+
+    // --- ADDED: Scene Transition Settings ---
+    [Header("Scene Transition")]
+    [Tooltip("Type the EXACT name of your target scene here (case-sensitive).")]
+    public string nextSceneName = "IntroScene"; 
 
     private int currentClipIndex = 0;
 
@@ -17,40 +24,49 @@ public class ManualTutorialSequencer : MonoBehaviour
     {
         if (videoPlayer == null) videoPlayer = GetComponent<VideoPlayer>();
         
-        // Safety check: Make sure we have durations for our clips
-        if (tutorialClips.Length != manualDurations.Length)
+        if (tutorialClips.Length == 0)
         {
-            Debug.LogError("Mismatch! You need the same number of Durations as Clips.");
+            Debug.LogError("No tutorial clips assigned!");
             return;
         }
 
-        StartCoroutine(PlayTutorialSequence());
+        PlayCurrentClip();
     }
 
-    IEnumerator PlayTutorialSequence()
+    public void NextClip()
     {
-        while (currentClipIndex < tutorialClips.Length)
+        currentClipIndex++;
+
+        // If there are still clips left, play the next one
+        if (currentClipIndex < tutorialClips.Length)
         {
-            // Set and Play the clip
-            videoPlayer.clip = tutorialClips[currentClipIndex];
-            videoPlayer.Play();
-
-            Debug.Log($"Playing {videoPlayer.clip.name} for {manualDurations[currentClipIndex]} seconds.");
-
-            // Wait for your specific manual duration
-            yield return new WaitForSeconds(manualDurations[currentClipIndex]);
-
-            // Move to next clip
-            currentClipIndex++;
+            PlayCurrentClip();
         }
+        else
+        {
+            // If the index goes past the number of clips, we are done!
+            HandleTutorialComplete();
+        }
+    }
 
-        HandleTutorialComplete();
+    private void PlayCurrentClip()
+    {
+        videoPlayer.clip = tutorialClips[currentClipIndex];
+        videoPlayer.isLooping = true; 
+        videoPlayer.Play();
+
+        Debug.Log($"Playing Tutorial Video {currentClipIndex + 1} of {tutorialClips.Length}");
     }
 
     void HandleTutorialComplete()
     {
         videoPlayer.Stop();
-        Debug.Log("Manual Tutorial Sequence Finished!");
-        // Add logic here to load Level 1
+        
+        if (continueButton != null) continueButton.SetActive(false);
+        
+        Debug.Log($"Tutorial finished! Loading scene: {nextSceneName}");
+        
+        // --- UPDATED: This line now triggers the scene transition ---
+        SceneManager.LoadScene(nextSceneName);
     }
 }

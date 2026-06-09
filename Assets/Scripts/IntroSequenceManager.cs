@@ -12,9 +12,12 @@ public class IntroSequenceManager : MonoBehaviour
     public Animator bookAnimator;
     public XRGrabInteractable grabInteractable;
     
-    // ADDED: Reference for your UI Text Canvas
     [Tooltip("Drag the Text Canvas GameObject here.")]
     public GameObject instructionsCanvas; 
+
+    // --- ADDED: Reference for your Skip Button ---
+    [Tooltip("Drag your Skip Button GameObject here.")]
+    public GameObject skipButton;
 
     [Header("Transition Settings")]
     public string mainMenuSceneName = "MainMenu";
@@ -23,40 +26,49 @@ public class IntroSequenceManager : MonoBehaviour
 
     void Start()
     {
-        // Make sure the book is hidden at the start
         if (bookGameObject != null) bookGameObject.SetActive(false);
-
-        // ADDED: Make sure the text canvas is hidden at the start
         if (instructionsCanvas != null) instructionsCanvas.SetActive(false);
 
-        // Listen for when the video ends
+        // Make sure the skip button is visible at the start
+        if (skipButton != null) skipButton.SetActive(true);
+
         videoPlayer.loopPointReached += OnVideoFinished;
 
-        // Listen for when the player grabs the book
         if (grabInteractable != null)
         {
             grabInteractable.selectEntered.AddListener(OnBookGrabbed);
         }
     }
 
+    // --- ADDED: This is the method your UI Button will call ---
+    public void SkipVideo()
+    {
+        Debug.Log("Intro skipped by player!");
+        
+        // Stop the video playback immediately
+        videoPlayer.Stop();
+        
+        // Manually trigger the rest of the sequence
+        OnVideoFinished(videoPlayer);
+    }
+
     void OnVideoFinished(VideoPlayer vp)
     {
-        // 1. Hide or turn off the video player view
         videoPlayer.gameObject.SetActive(false);
 
-        // 2. Reveal the book in the white scene
+        // --- ADDED: Hide the skip button so it doesn't linger ---
+        if (skipButton != null) skipButton.SetActive(false);
+
         if (bookGameObject != null)
         {
             bookGameObject.SetActive(true);
         }
 
-        // 3. Trigger the book's animation clip
         if (bookAnimator != null)
         {
             bookAnimator.SetTrigger("StartPlaying");
         }
 
-        // ADDED: 4. Reveal the "[Grab the book!]" text canvas now!
         if (instructionsCanvas != null)
         {
             instructionsCanvas.SetActive(true);
@@ -65,15 +77,10 @@ public class IntroSequenceManager : MonoBehaviour
 
     void OnBookGrabbed(SelectEnterEventArgs args)
     {
-        // Stop the animation so it doesn't fight the player's physical tracking hands
         if (bookAnimator != null) bookAnimator.enabled = false;
-
-        // Optional: Hide the instructions canvas when grabbed so it cleans up the screen
         if (instructionsCanvas != null) instructionsCanvas.SetActive(false);
 
         Debug.Log($"Book grabbed! Waiting {transitionDelay} seconds before loading menu...");
-        
-        // Trigger the delayed transition sequence
         StartCoroutine(TransitionToMenuSequence());
     }
 
