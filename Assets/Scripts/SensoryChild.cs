@@ -3,7 +3,6 @@ using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using TMPro;
 using UnityEngine.SceneManagement; 
 
 public class SensoryChild : MonoBehaviour
@@ -16,12 +15,16 @@ public class SensoryChild : MonoBehaviour
     [SerializeField] private XRBaseInteractable requiredHeadphone;
     [SerializeField] private XRBaseInteractable requiredGlasses;
 
-    // --- ADDED ANIMATION HEADER ---
     [Header("Animation")]
     [SerializeField] private Animator childAnimator;
 
-    [Header("UI (Optional)")]
-    [SerializeField] private TMP_Text statusText;
+    // --- NEW: SEQUENTIAL TEXT INSTRUCTIONS ---
+    [Header("Sequential Instructions")]
+    [Tooltip("The text GameObject saying 'Attach headphone to Aiman'")]
+    [SerializeField] private GameObject attachHeadphoneText;
+    
+    [Tooltip("The text GameObject saying 'Attach sunglasses to Aiman'")]
+    [SerializeField] private GameObject attachSunglassesText;
 
     [Header("Level Events")]
     [SerializeField] private UnityEvent onLevelCompleted;
@@ -33,6 +36,13 @@ public class SensoryChild : MonoBehaviour
     private bool hasHeadphones;
     private bool hasGlasses;
     private bool completed;
+
+    private void Start()
+    {
+        // 1. START: Hide both texts while dialogue is playing
+        if (attachHeadphoneText != null) attachHeadphoneText.SetActive(false);
+        if (attachSunglassesText != null) attachSunglassesText.SetActive(false);
+    }
 
     private void OnEnable()
     {
@@ -47,8 +57,6 @@ public class SensoryChild : MonoBehaviour
             eyeSocket.selectEntered.AddListener(OnGlassesAttached);
             eyeSocket.selectExited.AddListener(OnGlassesRemoved);
         }
-
-        RefreshUI();
     }
 
     private void OnDisable()
@@ -66,12 +74,18 @@ public class SensoryChild : MonoBehaviour
         }
     }
 
-    // --- ADDED: Method to call when dialogue ends ---
+    // --- 2. DIALOGUE ENDS: Call this method to start the process ---
     public void TriggerHeadphoneAnimation()
     {
         if (childAnimator != null && !completed)
         {
             childAnimator.SetTrigger("StartHeadphone");
+        }
+
+        // Show the first instruction
+        if (attachHeadphoneText != null && !hasHeadphones) 
+        {
+            attachHeadphoneText.SetActive(true);
         }
     }
 
@@ -79,10 +93,16 @@ public class SensoryChild : MonoBehaviour
     {
         hasHeadphones = IsRequiredItem(args.interactableObject, requiredHeadphone);
         
-        // --- ADDED: Trigger sunglasses animation if glasses aren't already attached ---
-        if (hasHeadphones && !hasGlasses && childAnimator != null && !completed)
+        if (hasHeadphones)
         {
-            childAnimator.SetTrigger("StartSunglasses");
+            // 3. HEADPHONE ATTACHED: Hide headphone text, show sunglasses text
+            if (attachHeadphoneText != null) attachHeadphoneText.SetActive(false);
+            if (attachSunglassesText != null && !hasGlasses) attachSunglassesText.SetActive(true);
+
+            if (!hasGlasses && childAnimator != null && !completed)
+            {
+                childAnimator.SetTrigger("StartSunglasses");
+            }
         }
 
         CheckStatus();
@@ -90,55 +110,62 @@ public class SensoryChild : MonoBehaviour
 
     private void OnHeadphonesRemoved(SelectExitEventArgs args)
     {
+        // If player takes them off, revert the texts
         if (IsRequiredItem(args.interactableObject, requiredHeadphone))
         {
             hasHeadphones = false;
-            CheckStatus();
+            if (attachHeadphoneText != null) attachHeadphoneText.SetActive(true);
+            if (attachSunglassesText != null) attachSunglassesText.SetActive(false);
         }
     }
 
     private void OnGlassesAttached(SelectEnterEventArgs args)
     {
         hasGlasses = IsRequiredItem(args.interactableObject, requiredGlasses);
+        
+        if (hasGlasses)
+        {
+            // 4. SUNGLASSES ATTACHED: Hide the sunglasses text
+            if (attachSunglassesText != null) attachSunglassesText.SetActive(false);
+        }
+
         CheckStatus();
     }
 
     private void OnGlassesRemoved(SelectExitEventArgs args)
     {
-        if (IsRequiredItem(args.interactableObject, requiredGlasses))
+        // If player takes them off, revert the text
+        if (IsRequiredItem(args.interactableObject, requiredGlasses) && hasHeadphones)
         {
             hasGlasses = false;
-            CheckStatus();
+            if (attachSunglassesText != null) attachSunglassesText.SetActive(true);
         }
     }
 
+    // Uses the reliable GameObject comparison we set up previously
     private static bool IsRequiredItem(IXRSelectInteractable selectedItem, XRBaseInteractable requiredItem)
     {
-        if (requiredItem == null || selectedItem == null)
-        {
-            return false;
-        }
-
-        return selectedItem.transform == requiredItem.transform;
+        if (requiredItem == null || selectedItem == null) return false;
+        return selectedItem.transform.gameObject == requiredItem.gameObject;
     }
 
     private void CheckStatus()
     {
-        RefreshUI();
-
         if (!completed && hasHeadphones && hasGlasses)
         {
             completed = true;
-            RefreshUI();
             
-            // --- ADDED: Trigger drink animation when both are attached ---
+            // Just to be absolutely safe, force both texts off when level is done
+            if (attachHeadphoneText != null) attachHeadphoneText.SetActive(false);
+            if (attachSunglassesText != null) attachSunglassesText.SetActive(false);
+
             if (childAnimator != null)
             {
                 childAnimator.SetTrigger("StartDrink");
             }
 
             onLevelCompleted?.Invoke();
-            Debug.Log("L3 Complete: Headphone and Glasses 1 attached.");
+            Debug.Log("L3 Complete: Headphone and Glasses attached.");
 
             StartCoroutine(LoadOutroRoutine());
         }
@@ -147,31 +174,6 @@ public class SensoryChild : MonoBehaviour
     private System.Collections.IEnumerator LoadOutroRoutine()
     {
         yield return new WaitForSeconds(transitionDelay);
-        Debug.Log($"Transitioning to Outro scene: {outroSceneName}");
         SceneManager.LoadScene(outroSceneName);
-    }
-
-    private void RefreshUI()
-    {
-        if (statusText == null) return;
-
-        if (completed)
-        {
-            statusText.text = "Level Complete";
-            return;
-        }
-
-        if (!hasHeadphones && !hasGlasses)
-        {
-            statusText.text = "Snap Headphone and Glasses 1 onto the child";
-        }
-        else if (!hasHeadphones)
-        {
-            statusText.text = "Headphone missing";
-        }
-        else if (!hasGlasses)
-        {
-            statusText.text = "Glasses 1 missing";
-        }
     }
 }
