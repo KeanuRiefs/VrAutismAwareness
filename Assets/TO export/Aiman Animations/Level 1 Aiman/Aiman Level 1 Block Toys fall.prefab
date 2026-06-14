@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8705472193148585156
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.9921713
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -48.06153
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7216387005572330487, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 7260037015721404073, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+    - target: {fileID: -1503924383817017085, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f801af044ef795b44b6646095246d399, type: 2}
+    - target: {fileID: -1496467518386245160, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d7e77b95671795e4fa5592ed66ca4f53, type: 2}
+    - target: {fileID: 919132149155446097, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_Name
+      value: Aiman Level 1 Block Toys fall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151322451307840412, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 239781852373d4349a7d906e6dbc095d, type: 2}
+    - target: {fileID: 3430148455251697303, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 7048601247072954131, guid: 47f3b271b50f14d4fbc351a0104e9d46, type: 3}
+    - target: {fileID: 4116846905133353106, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -1656453461193688636, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+    - target: {fileID: 5866666021909216657, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b9bcdfdef1ff18f47b526ff7950810f8, type: 2}
+    - target: {fileID: 7453875685747057902, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d3fd833210772246a8098f120019e9d, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: -5266785677919700964, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5c67478206288f9468b7c542ca47ec9e, type: 3}

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5848470327860183333
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.7049482
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -55.186745
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_Name
+      value: Aiman Level 3 panic while wearing sunglasses
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d989e5bf2de630a48bf414f1d9fb50fe, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: -5266785677919700964, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+    - {fileID: -7841104080685599680, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1dbc3369490a8d44d9f3f61a2df9f2f5, type: 3}

@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5602157717437265787
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.969864
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -43.98809
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5631779232208953882, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bdc4e57ec6a331a4a883a060c01adbff, type: 2}
+    - target: {fileID: -2908559017002951520, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 01a8539dc21fe924e82c238c04b6df8f, type: 2}
+    - target: {fileID: 186163904840047493, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 01a8539dc21fe924e82c238c04b6df8f, type: 2}
+    - target: {fileID: 919132149155446097, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_Name
+      value: Amin level 2 point at toy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9885963f0543ce5459636b9f9045b4e0, type: 2}
+    - target: {fileID: 8448865259736250129, guid: 752851bb3f771274396a446f30168cf8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2974b5b5f52dc34438e131d9575b225b, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 752851bb3f771274396a446f30168cf8, type: 3}
