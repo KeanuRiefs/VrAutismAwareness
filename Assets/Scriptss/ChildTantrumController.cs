@@ -19,19 +19,4 @@ public class ChildTantrumController : MonoBehaviour
 
         // if (tantrumCryingAudio != null) tantrumCryingAudio.Play();
     }
-
-    /// <blockquotes>
-    /// Call this method when the level is completed to calm the child down.
-    /// </blockquotes>
-    public void TriggerCalmDown()
-    {
-        if (childAnimator != null)
-        {
-            childAnimator.SetTrigger("CalmDown");
-            Debug.Log("Calm Down Animation Triggered!");
-        }
-        
-        // If you had audio playing, you could stop it here:
-        // if (tantrumCryingAudio != null && tantrumCryingAudio.isPlaying) tantrumCryingAudio.Stop();
-    }
 }
