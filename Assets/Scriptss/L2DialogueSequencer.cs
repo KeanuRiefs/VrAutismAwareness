@@ -26,6 +26,10 @@ public class L2DialogueSequencer : MonoBehaviour
     [Header("XR Input (Optional)")]
     [SerializeField] private InputActionProperty continueAction;
 
+    [Header("Animation References")]
+    [Tooltip("Element 0 matches Dialogue Line 0, Element 1 matches Line 1, etc. Leave empty if a line has no animations.")]
+    [SerializeField] private LineAnimationGroup[] lineAnimations;
+
     [Header("L2 PECS Cards")]
     [SerializeField] private GameObject pecsCardContainer;
 
@@ -83,6 +87,9 @@ public class L2DialogueSequencer : MonoBehaviour
             
             PlayCurrentVoiceLine(currentIndex);
 
+            // Trigger animations for this exact line
+            TriggerAnimationsForIndex(currentIndex);
+
             StartCoroutine(TypeText(dialogueLines[currentIndex]));
             currentIndex++;
         }
@@ -102,6 +109,22 @@ public class L2DialogueSequencer : MonoBehaviour
         {
             dialogueAudioSource.clip = voiceLines[index];
             dialogueAudioSource.Play();
+        }
+    }
+
+    private void TriggerAnimationsForIndex(int index)
+    {
+        if (lineAnimations == null || index >= lineAnimations.Length || lineAnimations[index] == null) return;
+
+        var currentGroup = lineAnimations[index].animationsToPlay;
+        if (currentGroup == null || currentGroup.Length == 0) return;
+
+        foreach (var action in currentGroup)
+        {
+            if (action.animator != null && !string.IsNullOrEmpty(action.triggerName))
+            {
+                action.animator.SetTrigger(action.triggerName);
+            }
         }
     }
 
@@ -136,7 +159,6 @@ public class L2DialogueSequencer : MonoBehaviour
 
     private void SetupPecsCardContainer()
     {
-        // Still finds the container if it wasn't manually assigned in the inspector
         if (pecsCardContainer == null)
             pecsCardContainer = GameObject.Find("PecsCardContainer");
 
