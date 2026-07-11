@@ -15,9 +15,7 @@ public class L2DialogueSequencer : MonoBehaviour
     [SerializeField] private string[] dialogueLines;
 
     [Header("Audio Settings")]
-    [Tooltip("Drag your AudioSource component here (can be on this object or the character).")]
     [SerializeField] private AudioSource dialogueAudioSource;
-    [Tooltip("Add your voice lines here in the exact same order as your dialogue lines.")]
     [SerializeField] private AudioClip[] voiceLines;
 
     [Header("Settings")]
@@ -27,8 +25,13 @@ public class L2DialogueSequencer : MonoBehaviour
     [SerializeField] private InputActionProperty continueAction;
 
     [Header("Animation References")]
-    [Tooltip("Element 0 matches Dialogue Line 0, Element 1 matches Line 1, etc. Leave empty if a line has no animations.")]
+    [Tooltip("Element 0 matches Dialogue Line 0, Element 1 matches Line 1, etc.")]
     [SerializeField] private LineAnimationGroup[] lineAnimations;
+
+    // --- NEW: A safe way to trigger scripts per line! ---
+    [Header("Special Script Triggers")]
+    [Tooltip("Fire events on specific lines. Element 0 = Line 1, Element 1 = Line 2, etc.")]
+    [SerializeField] private UnityEvent[] lineEvents;
 
     [Header("L2 PECS Cards")]
     [SerializeField] private GameObject pecsCardContainer;
@@ -86,9 +89,13 @@ public class L2DialogueSequencer : MonoBehaviour
             StopAllCoroutines();
             
             PlayCurrentVoiceLine(currentIndex);
-
-            // Trigger animations for this exact line
             TriggerAnimationsForIndex(currentIndex);
+
+            // --- NEW: Trigger the Unity Event for this exact line ---
+            if (lineEvents != null && currentIndex < lineEvents.Length && lineEvents[currentIndex] != null)
+            {
+                lineEvents[currentIndex]?.Invoke();
+            }
 
             StartCoroutine(TypeText(dialogueLines[currentIndex]));
             currentIndex++;
