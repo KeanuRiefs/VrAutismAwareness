@@ -4,7 +4,25 @@ using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
-public class DialogueSequencer : MonoBehaviour
+// Renamed to guarantee it doesn't conflict with any other script in your project
+[System.Serializable]
+public class DialogueAnimTrigger
+{
+    [Tooltip("The Animator component of the character you want to animate.")]
+    public Animator animator;
+    [Tooltip("The exact name of the Trigger parameter in their Animator Controller.")]
+    public string triggerName;
+}
+
+[System.Serializable]
+public class LineAnimationGroup
+{
+    [Tooltip("Add multiple character animations to trigger on this specific dialogue line index.")]
+    public DialogueAnimTrigger[] animationsToPlay;
+}
+
+// CHANGED TO MATCH YOUR UNITY FILENAME EXACTLY (DialougeSequencer)
+public class DialougeSequencer : MonoBehaviour
 {
     private System.Action onDialogueEndedAction;
 
@@ -14,7 +32,6 @@ public class DialogueSequencer : MonoBehaviour
     [TextArea(3, 10)]
     [SerializeField] private string[] dialogueLines;
 
-    // --- ADDED AUDIO REFERENCES ---
     [Header("Audio Settings")]
     [Tooltip("Drag your AudioSource component here (can be on this object or the character).")]
     [SerializeField] private AudioSource dialogueAudioSource;
@@ -29,6 +46,10 @@ public class DialogueSequencer : MonoBehaviour
 
     [Header("Animation References")]
     [SerializeField] private Animator childAnimator; 
+    
+    // --- The parallel array for line-by-line animations ---
+    [Tooltip("Element 0 matches Dialogue Line 0, Element 1 matches Line 1, etc. Leave empty if a line has no animations.")]
+    [SerializeField] private LineAnimationGroup[] lineAnimations;
 
     [Header("L2 PECS Cards (Optional)")]
     [SerializeField] private GameObject pecsCardContainer;
@@ -53,7 +74,6 @@ public class DialogueSequencer : MonoBehaviour
         textMesh = GetComponent<TMP_Text>();
         if (textMesh != null) textMesh.text = "";
         
-        // Safety check if you forgot to assign the audio source
         if (dialogueAudioSource == null) dialogueAudioSource = GetComponent<AudioSource>();
 
         SetupPecsCardContainer();
@@ -75,7 +95,6 @@ public class DialogueSequencer : MonoBehaviour
             continueAction.action.performed -= _ => ContinueDialogue();
             continueAction.action.Disable();
         }
-        
     }
 
     private void Start() => DisplayNextLine();
@@ -92,9 +111,13 @@ public class DialogueSequencer : MonoBehaviour
         {
             StopAllCoroutines();
             
-            // --- ADDED: Play matching voice line ---
+            // 1. Play matching voice line
             PlayCurrentVoiceLine(currentIndex);
 
+            // 2. Trigger any animations assigned to this specific line
+            TriggerAnimationsForIndex(currentIndex);
+
+            // 3. Type out the text
             StartCoroutine(TypeText(dialogueLines[currentIndex]));
             currentIndex++;
         }
@@ -104,15 +127,12 @@ public class DialogueSequencer : MonoBehaviour
         }
     }
 
-    // --- ADDED AUDIO LOGIC ---
     private void PlayCurrentVoiceLine(int index)
     {
         if (dialogueAudioSource == null) return;
 
-        // Stop whatever voice line was playing previously
         dialogueAudioSource.Stop();
 
-        // Check if there is a valid voice clip assigned for this text index
         if (voiceLines != null && index < voiceLines.Length && voiceLines[index] != null)
         {
             dialogueAudioSource.clip = voiceLines[index];
@@ -120,9 +140,24 @@ public class DialogueSequencer : MonoBehaviour
         }
     }
 
+    private void TriggerAnimationsForIndex(int index)
+    {
+        if (lineAnimations == null || index >= lineAnimations.Length || lineAnimations[index] == null) return;
+
+        var currentGroup = lineAnimations[index].animationsToPlay;
+        if (currentGroup == null || currentGroup.Length == 0) return;
+
+        foreach (var action in currentGroup)
+        {
+            if (action.animator != null && !string.IsNullOrEmpty(action.triggerName))
+            {
+                action.animator.SetTrigger(action.triggerName);
+            }
+        }
+    }
+
     private void EndDialogue()
     {
-        // --- ADDED: Stop voice line if dialogue is forced to end ---
         if (dialogueAudioSource != null) dialogueAudioSource.Stop();
 
         if (textMesh != null) textMesh.text = "";
