@@ -51,6 +51,11 @@ public class DialougeSequencer : MonoBehaviour
     [Tooltip("Element 0 matches Dialogue Line 0, Element 1 matches Line 1, etc. Leave empty if a line has no animations.")]
     [SerializeField] private LineAnimationGroup[] lineAnimations;
 
+    // --- NEW: A safe way to trigger scripts per line! ---
+    [Header("Special Script Triggers")]
+    [Tooltip("Fire events on specific lines. Element 0 = Line 1, Element 1 = Line 2, etc.")]
+    [SerializeField] private UnityEvent[] lineEvents;
+
     [Header("L2 PECS Cards (Optional)")]
     [SerializeField] private GameObject pecsCardContainer;
     [SerializeField] private Transform playerCameraTransform;
@@ -116,6 +121,12 @@ public class DialougeSequencer : MonoBehaviour
 
             // 2. Trigger any animations assigned to this specific line
             TriggerAnimationsForIndex(currentIndex);
+
+            // --- NEW: Trigger the Unity Event for this exact line ---
+            if (lineEvents != null && currentIndex < lineEvents.Length && lineEvents[currentIndex] != null)
+            {
+                lineEvents[currentIndex]?.Invoke();
+            }
 
             // 3. Type out the text
             StartCoroutine(TypeText(dialogueLines[currentIndex]));
