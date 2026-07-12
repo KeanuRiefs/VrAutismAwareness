@@ -3,7 +3,6 @@ using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.SceneManagement; 
 
 public class SensoryChild : MonoBehaviour
 {
@@ -28,10 +27,6 @@ public class SensoryChild : MonoBehaviour
 
     [Header("Level Events")]
     [SerializeField] private UnityEvent onLevelCompleted;
-
-    [Header("Transition Settings")]
-    [SerializeField] private string outroSceneName = "OutroScene"; 
-    [SerializeField] private float transitionDelay = 4.0f; 
 
     private bool hasHeadphones;
     private bool hasGlasses;
@@ -166,14 +161,6 @@ public class SensoryChild : MonoBehaviour
 
             onLevelCompleted?.Invoke();
             Debug.Log("L3 Complete: Headphone and Glasses attached.");
-
-            StartCoroutine(LoadOutroRoutine());
         }
-    }
-
-    private System.Collections.IEnumerator LoadOutroRoutine()
-    {
-        yield return new WaitForSeconds(transitionDelay);
-        SceneManager.LoadScene(outroSceneName);
     }
 }
