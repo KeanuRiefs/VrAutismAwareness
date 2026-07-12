@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,9 +8,6 @@ public class DirectCommunicationManager : MonoBehaviour
     
     [Header("Animation")]
     [SerializeField] private Animator childAnimator;
-
-    [Header("Card Step")]
-    [SerializeField] private float hidePresentedCardDelay = 3f;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onLevelStarted; 
@@ -51,18 +47,13 @@ public class DirectCommunicationManager : MonoBehaviour
         // 2. Fire the correct card event
         onCorrectCardPresented?.Invoke();
 
-        // 3. Instantly complete the level!
+        // 3. Hide the UI cards instantly (Fixes the Coroutine crash!)
+        if (cardsContainer != null) cardsContainer.SetActive(false);
+
+        // 4. Complete the level (This turns off the GameObject via MasterManager)
         levelCompleted = true;
         onLevelCompleted?.Invoke();
+        
         Debug.Log("Correct card presented. Level complete!");
-
-        // 4. Clean up the UI cards after a short delay
-        StartCoroutine(HideAllCardsAfterDelay());
-    }
-
-    private IEnumerator HideAllCardsAfterDelay()
-    {
-        yield return new WaitForSeconds(hidePresentedCardDelay);
-        if (cardsContainer != null) cardsContainer.SetActive(false); 
     }
 }
